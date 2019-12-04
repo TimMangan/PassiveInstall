@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7479F155-D1F0-420B-983A-A8844317896A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Set_PassiveInstall</RootNamespace>
+    <AssemblyName>PassiveInstall</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Icon1.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>strongname.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression.FileSystem">
+      <HintPath>..\..\..\..\..\Windows\Microsoft.NET\assembly\GAC_MSIL\System.IO.Compression.FileSystem\v4.0_4.0.0.0__b77a5c561934e089\System.IO.Compression.FileSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Windows\Microsoft.NET\assembly\GAC_MSIL\System.Management.Automation\v4.0_3.0.0.0__31bf3856ad364e35\System.Management.Automation.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Management.Instrumentation" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Cmdlets\Approve-PassiveElevation.cs" />
+    <Compile Include="Cmdlets\Copy-PassiveFile.cs" />
+    <Compile Include="Cmdlets\Copy-PassiveFolder.cs" />
+    <Compile Include="Cmdlets\Install-PassiveInstallFile.cs" />
+    <Compile Include="Cmdlets\Move-PassiveFolder.cs" />
+    <Compile Include="Cmdlets\Move-PassiveRegistryKey.cs" />
+    <Compile Include="Cmdlets\New-PassiveAppPathSearch.cs" />
+    <Compile Include="Cmdlets\New-PassiveDesktopShortcut.cs" />
+    <Compile Include="Cmdlets\New-PassiveEnvironmentVariable.cs" />
+    <Compile Include="Cmdlets\New-PassiveFolderIfNotPresent.cs" />
+    <Compile Include="Cmdlets\New-PassiveRegistryKeyIfNotPresent.cs" />
+    <Compile Include="Cmdlets\New-PassiveStartMenuShortcut.cs" />
+    <Compile Include="Cmdlets\Disable-PassiveWindowsServices.cs" />
+    <Compile Include="Cmdlets\Optimize-PassiveNgenCompileFIle.cs" />
+    <Compile Include="Cmdlets\Optimize-PassiveNgenQueues.cs" />
+    <Compile Include="Cmdlets\Remove-PassiveInstallerCacheFilePattern.cs" />
+    <Compile Include="Cmdlets\Remove-PassiveFilePattern.cs" />
+    <Compile Include="Cmdlets\Remove-PassiveInstallerCacheFolders.cs" />
+    <Compile Include="Cmdlets\Remove-PassiveRegistryItem.cs" />
+    <Compile Include="Cmdlets\Set-PassiveServiceAccount.cs" />
+    <Compile Include="Cmdlets\Set-PassiveShortcutFixupReg.cs" />
+    <Compile Include="Cmdlets\Set-PassiveShortcutFixupSpaceAtEnd.cs" />
+    <Compile Include="Cmdlets\Set-PassiveWindowsServiceAccount.cs" />
+    <Compile Include="Cmdlets\Show-PassiveTimer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Cmdlets\Remove-PassiveFiles.cs" />
+    <Compile Include="Cmdlets\Remove-PassiveFolders.cs" />
+    <Compile Include="Cmdlets\Remove-PassiveDesktopShortcuts.cs" />
+    <Compile Include="Cmdlets\Remove-PassiveEnvironmentVariables.cs" />
+    <Compile Include="Cmdlets\Remove-PassiveStartMenuShortcuts.cs" />
+    <Compile Include="Cmdlets\Set-PassiveShortcutFixupCmdBat.cs" />
+    <Compile Include="Cmdlets\Set-PassiveWinColors.cs" />
+    <Compile Include="Cmdlets\Set-PassiveWinSize.cs" />
+    <Compile Include="Statics\StaticClass.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Icon1.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PassiveInstall.pfx" />
+    <None Include="PassiveInstall2017.pfx" />
+    <None Include="strongname.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="IWshRuntimeLibrary">
+      <Guid>{F935DC20-1CF0-11D0-ADB9-00C04FD58A0B}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Shell32">
+      <Guid>{50A7E9B0-70EF-11D1-B75A-00A0C90564FE}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>"C:\Program Files (x86)\Windows Kits\10\bin\10.0.18362.0\x64\signtool.exe"  sign /f $(ProjectDir)\strongname.pfx /p TMurgent1 /t http://timestamp.digicert.com $(TargetPath)</PostBuildEvent>
+  </PropertyGroup>
+</Project>
