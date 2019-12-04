@@ -1,0 +1,6 @@
+obj\Release\Product.wixobj
+C:\Users\admin\Desktop\Set-PassiveInstall\SetupPassiveInstall\bin\Release\SetupPassiveInstall.msi
+C:\Users\admin\Desktop\Set-PassiveInstall\SetupPassiveInstall\bin\Release\SetupPassiveInstall.wixpdb
+obj\Release\SetupPassiveInstall.wixproj.BindContentsFileListnull.txt
+obj\Release\SetupPassiveInstall.wixproj.BindOutputsFileListnull.txt
+obj\Release\SetupPassiveInstall.wixproj.BindBuiltOutputsFileListnull.txt

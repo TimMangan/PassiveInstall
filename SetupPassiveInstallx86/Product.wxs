@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+    xmlns:util="http://schemas.microsoft.com/wix/UtilExtension"
+     xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
+  <?include incPlatforms.wxi ?>
+  <?define ProductVersion=!(bind.FileVersion.PassiveInstall.dll) ?>
+
+  <Product Id="*" Name="PassiveInstallx86" Language="1033" Version="$(var.ProductVersion)" Manufacturer="TMurgent Technologies" UpgradeCode="7479f155-d1f0-420b-983a-a8844317896a">
+
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine"
+             Comments="PassiveInstall $(var.ProductVersion) x86 PowerShell Module installer."
+             Description="$(var.ProductName)"
+    />
+
+    <Upgrade Id="7479f155-d1f0-420b-983a-a8844317896a">
+      <UpgradeVersion OnlyDetect="yes"  Minimum="0.0.0.0" Maximum="$(var.ProductVersion)" Property="PREVIOUSVERSIONSINSTALLED" IncludeMinimum="yes" IncludeMaximum="no" />
+      <UpgradeVersion OnlyDetect="yes" Minimum="$(var.ProductVersion)" Maximum="$(var.ProductVersion)" Property="SELFFOUND" IncludeMinimum="yes" IncludeMaximum="yes" />
+      <UpgradeVersion OnlyDetect="yes" Minimum="$(var.ProductVersion)" Maximum="99.0.0.0" Property="NEWERVERSIONSINSTALLED" IncludeMinimum="no" IncludeMaximum="yes" />
+    </Upgrade>
+
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+
+    <MediaTemplate EmbedCab="yes" />
+
+
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="$(var.PlatformProgramFilesFolder)">
+        <Directory Id="WPS_DIR" Name="WindowsPowerShell" >
+          <Directory Id="MODULES_DIR" Name="Modules" >
+            <Directory Id="INSTALLDIR" Name="PassiveInstall" >
+              <Directory Id="EN_US" Name="en-us">
+              </Directory>
+            </Directory>
+        </Directory>
+       </Directory>
+      </Directory>
+    </Directory>
+
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLDIR" />
+
+    <WixVariable Id="WixUILicenseRtf" Value="License.rtf" />
+    <WixVariable Id="WixUIBannerBmp" Value="banner.bmp" />
+    <WixVariable Id="WixUIDialogBmp" Value="LargeBanner.png" />
+
+
+    <Feature Id="ProductFeature" Title="SetupPassiveInstall" Level="1">
+      <ComponentGroupRef Id="ProductComponents" />
+      <ComponentGroupRef Id="HelpAboutComponents" />
+    </Feature>
+
+
+    <UI >
+      <UIRef Id="WixUI_InstallDir"/>
+      <UIRef Id="WixUI_ErrorProgressText" />
+    </UI>
+
+    <Icon Id="PassiveInstallIcon.ico" SourceFile="..\PassiveInstall\Icon1.ico"/>
+    <Property Id="ARPPRODUCTICON" Value="PassiveInstallIcon.ico" />
+
+  </Product>
+
+
+  <Fragment>
+    <ComponentGroup Id="ProductComponents" Directory="INSTALLDIR">
+      <Component Id="ProductComponent" Guid="F589E2DF-3D4C-4EE3-8E09-69CFA9CA96CF">
+        <File Id="License.rtf" Name="License.rtf" Source="License.rtf" Vital="no" KeyPath="no" DiskId="1" Hidden="no" />
+        <File Id="PassiveInstallIcon.ico" Name="PassiveInstallIcon.ico" Source="..\PassiveInstall\Icon1.ico" Vital="no" KeyPath="no" DiskId="1" Hidden="yes" />
+        <File Id="PassiveInstall.dll" Name="PassiveInstall.dll" Source="..\PassiveInstall\bin\Release\PassiveInstall.dll"
+              Vital="yes" KeyPath="yes" DiskId="1" >
+          <netfx:NativeImage Id="PassiveInstall.ni.dll" Platform="all" Priority="1"  />
+        </File>
+        <File Id="Interop.IWshRuntimeLibrary.dll" Name="Interop.IWshRuntimeLibrary.dll" Source="..\PassiveInstall\bin\Release\Interop.IWshRuntimeLibrary.dll"
+              Vital="yes" KeyPath="no" DiskId="1" Hidden="yes" />
+        <File Id="Interop.Shell32.dll" Name="Interop.Shell32.dll" Source="..\PassiveInstall\bin\Release\Interop.Shell32.dll"
+              Vital="yes" KeyPath="no" DiskId="1" Hidden="yes" />
+        <File Id="PassiveInstall.psd1" Name="PassiveInstall.psd1" Source="PassiveInstall.psd1" Vital="yes" KeyPath="no" DiskId="1" Hidden="no" />
+        <!-- Not needed since this is now a standard path
+        <Environment Id="SET_ENV"
+                     Action="set"
+                     Name="PSModulePath"
+                     Part="last"
+                     Permanent="no"
+                     System="yes"
+                     Value="[MODULES_DIR]" />
+                     -->
+      </Component>
+    </ComponentGroup>
+    <ComponentGroup Id="HelpAboutComponents" Directory="EN_US">
+      <Component Id="HelpAboutComponent" Guid="{4E8BBA2E-90E8-44FF-A788-513546E6A903}">
+        <File Id="About_PassiveInstall.help.txt" Name="About_PassiveInstall.help.txt" Source="..\About_PassiveInstall.help.txt" Vital="yes" KeyPath="yes" DiskId="1" Hidden="no" />
+        <File Id="PassiveInstall.dll.help.xml" Name="PassiveInstall.dll-help.xml" Source="..\PassiveInstall.dll-help.xml" Vital="yes" KeyPath="no" DiskId="1" Hidden="no" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+</Wix>

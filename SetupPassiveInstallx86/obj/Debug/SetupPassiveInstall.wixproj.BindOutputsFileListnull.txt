@@ -1,0 +1,2 @@
+C:\Users\admin\Desktop\Set-PassiveInstall\SetupPassiveInstall\bin\Debug\SetupPassiveInstall.msi
+C:\Users\admin\Desktop\Set-PassiveInstall\SetupPassiveInstall\bin\Debug\SetupPassiveInstall.wixpdb

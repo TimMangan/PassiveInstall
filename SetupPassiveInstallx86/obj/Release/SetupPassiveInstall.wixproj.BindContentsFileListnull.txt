@@ -1,0 +1,4 @@
+License.rtf
+..\Set-PassiveInstall\bin\Release\PassiveInstall.dll
+PassiveInstall.psd1
+..\Set-PassiveInstall\Icon1.ico
