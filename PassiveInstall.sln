@@ -1,0 +1,73 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29503.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PassiveInstall", "PassiveInstall\PassiveInstall.csproj", "{7479F155-D1F0-420B-983A-A8844317896A}"
+EndProject
+Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "PassiveInstallx86", "SetupPassiveInstallx86\PassiveInstallx86.wixproj", "{F1A90D27-D4E8-49C8-896C-2E956AE31D6F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7479F155-D1F0-420B-983A-A8844317896A} = {7479F155-D1F0-420B-983A-A8844317896A}
+	EndProjectSection
+EndProject
+Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "PassiveInstallx64", "SetupPassiveInstallx64\PassiveInstallx64.wixproj", "{54D63942-0C55-4341-AAA4-3BA23D9090FA}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7479F155-D1F0-420B-983A-A8844317896A} = {7479F155-D1F0-420B-983A-A8844317896A}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Help", "Help", "{2C984E94-90B0-4394-B783-788A259E16E4}"
+	ProjectSection(SolutionItems) = preProject
+		About_PassiveInstall.help.txt = About_PassiveInstall.help.txt
+		PassiveInstall.dll-help.xml = PassiveInstall.dll-help.xml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7479F155-D1F0-420B-983A-A8844317896A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7479F155-D1F0-420B-983A-A8844317896A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7479F155-D1F0-420B-983A-A8844317896A}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{7479F155-D1F0-420B-983A-A8844317896A}.Debug|x64.Build.0 = Debug|Any CPU
+		{7479F155-D1F0-420B-983A-A8844317896A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7479F155-D1F0-420B-983A-A8844317896A}.Debug|x86.Build.0 = Debug|Any CPU
+		{7479F155-D1F0-420B-983A-A8844317896A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7479F155-D1F0-420B-983A-A8844317896A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7479F155-D1F0-420B-983A-A8844317896A}.Release|x64.ActiveCfg = Release|x64
+		{7479F155-D1F0-420B-983A-A8844317896A}.Release|x64.Build.0 = Release|x64
+		{7479F155-D1F0-420B-983A-A8844317896A}.Release|x86.ActiveCfg = Release|Any CPU
+		{7479F155-D1F0-420B-983A-A8844317896A}.Release|x86.Build.0 = Release|Any CPU
+		{F1A90D27-D4E8-49C8-896C-2E956AE31D6F}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{F1A90D27-D4E8-49C8-896C-2E956AE31D6F}.Debug|x64.ActiveCfg = Debug|x64
+		{F1A90D27-D4E8-49C8-896C-2E956AE31D6F}.Debug|x64.Build.0 = Debug|x64
+		{F1A90D27-D4E8-49C8-896C-2E956AE31D6F}.Debug|x86.ActiveCfg = Debug|x86
+		{F1A90D27-D4E8-49C8-896C-2E956AE31D6F}.Debug|x86.Build.0 = Debug|x86
+		{F1A90D27-D4E8-49C8-896C-2E956AE31D6F}.Release|Any CPU.ActiveCfg = Release|x86
+		{F1A90D27-D4E8-49C8-896C-2E956AE31D6F}.Release|Any CPU.Build.0 = Release|x86
+		{F1A90D27-D4E8-49C8-896C-2E956AE31D6F}.Release|x64.ActiveCfg = Release|x64
+		{F1A90D27-D4E8-49C8-896C-2E956AE31D6F}.Release|x64.Build.0 = Release|x64
+		{F1A90D27-D4E8-49C8-896C-2E956AE31D6F}.Release|x86.ActiveCfg = Release|x86
+		{F1A90D27-D4E8-49C8-896C-2E956AE31D6F}.Release|x86.Build.0 = Release|x86
+		{54D63942-0C55-4341-AAA4-3BA23D9090FA}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{54D63942-0C55-4341-AAA4-3BA23D9090FA}.Debug|x64.ActiveCfg = Debug|x86
+		{54D63942-0C55-4341-AAA4-3BA23D9090FA}.Debug|x86.ActiveCfg = Debug|x86
+		{54D63942-0C55-4341-AAA4-3BA23D9090FA}.Debug|x86.Build.0 = Debug|x86
+		{54D63942-0C55-4341-AAA4-3BA23D9090FA}.Release|Any CPU.ActiveCfg = Release|x64
+		{54D63942-0C55-4341-AAA4-3BA23D9090FA}.Release|Any CPU.Build.0 = Release|x64
+		{54D63942-0C55-4341-AAA4-3BA23D9090FA}.Release|x64.ActiveCfg = Release|x86
+		{54D63942-0C55-4341-AAA4-3BA23D9090FA}.Release|x86.ActiveCfg = Release|x86
+		{54D63942-0C55-4341-AAA4-3BA23D9090FA}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0D65A274-BF8A-4DEE-9D0A-4142B598B84A}
+	EndGlobalSection
+EndGlobal
