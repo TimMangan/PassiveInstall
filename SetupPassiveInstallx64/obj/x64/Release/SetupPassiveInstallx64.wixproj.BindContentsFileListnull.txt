@@ -1,0 +1,8 @@
+..\About_PassiveInstall.help.txt
+..\PassiveInstall\bin\Release\Interop.IWshRuntimeLibrary.dll
+..\PassiveInstall\bin\Release\Interop.Shell32.dll
+License.rtf
+..\PassiveInstall\bin\Release\PassiveInstall.dll
+..\PassiveInstall.dll-help.xml
+PassiveInstall.psd1
+..\PassiveInstall\Icon1.ico
