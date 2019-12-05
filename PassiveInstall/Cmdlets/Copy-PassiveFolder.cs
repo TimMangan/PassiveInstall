@@ -61,7 +61,9 @@ namespace PassiveInstall.Cmdlets
         {
             if (_sourceFolder != null && _destinationFolder != null)
             {
+#if LOCALDEBUG
                 WriteVerbose(_cmdlet + ": Starting source=" + _sourceFolder + " Destination=" + _destinationFolder);
+#endif
 
                 // Determine if source folder exists
                 if (Directory.Exists(_sourceFolder))
@@ -69,8 +71,8 @@ namespace PassiveInstall.Cmdlets
                     // Source was an entire folder to copy
                     if (this.ShouldProcess(_destinationFolder, "CopyDirectory"))
                     {
-                        CopyThisDirectory(_sourceFolder, _destinationFolder);
-                        output += _cmdlet + ": SUCCESS The folder \"" + _sourceFolder + "\" was copied to \"" + _destinationFolder + "\".\n";
+                        if (CopyThisDirectory(_sourceFolder, _destinationFolder, 1))
+                            output += _cmdlet + ": SUCCESS The folder \"" + _sourceFolder + "\" was copied to \"" + _destinationFolder + "\".\n";
                     }
                     else
                     {
@@ -88,37 +90,122 @@ namespace PassiveInstall.Cmdlets
             }
             WriteObject(output);
         }
-        private void CopyThisDirectory(string source, string dest)
+        private bool CopyThisDirectory(string source, string dest,int level)
         {
-            if (!Directory.Exists(dest))
-                Directory.CreateDirectory(dest);
-            foreach (string sd in Directory.GetDirectories(source))
+            string destMinusSlash;
+            string sourceMinusSlash;
+            string lastfolderlevel;
+#if LOCALDEBUG
+            WriteVerbose(_cmdlet + "(" + level.ToString() + "): CopyThisDirectory " + source + " to " + dest);
+#endif
+            destMinusSlash = dest;
+            if (dest.EndsWith("\\"))
+                destMinusSlash = destMinusSlash.Substring(0, destMinusSlash.Length - 1);
+            sourceMinusSlash = source;
+            if (source.EndsWith("\\"))
+                sourceMinusSlash = sourceMinusSlash.Substring(0, sourceMinusSlash.Length - 1);
+            lastfolderlevel = sourceMinusSlash;
+            if (lastfolderlevel.Contains('\\'))
             {
-                string td = dest.Substring(dest.LastIndexOf('\\'));
-                CopyThisDirectory(sd, dest + td);
+                lastfolderlevel = lastfolderlevel.Substring(lastfolderlevel.LastIndexOf('\\')+1);
             }
-            foreach (string sf in Directory.GetFiles(source))
+#if LOCALDEBUG
+            WriteVerbose(_cmdlet + "(" + level.ToString() + "): initial string manipulation done");
+#endif
+
+            if (!Directory.Exists(destMinusSlash))
             {
-                string tf = dest.Substring(dest.LastIndexOf('\\'));
                 try
                 {
-                    File.Copy(sf, dest + tf);
+                    WriteVerbose(_cmdlet + "(" + level.ToString() + "): Create Directory " + destMinusSlash);
+                    Directory.CreateDirectory(destMinusSlash);
+                }
+                catch (IOException ex)
+                {
+                    output += _cmdlet + ": ERR: " + ex.Message;
+                    return false;
+                }
+            }
+#if LOCALDEBUG
+            WriteVerbose(_cmdlet + "(" + level.ToString() + "): past base dircreate");
+#endif
+
+            if (!Directory.Exists(destMinusSlash + "\\" + lastfolderlevel))
+            {
+                try
+                {
+                    WriteVerbose(_cmdlet + "(" + level.ToString() + "): Create Directory " + destMinusSlash + "\\" + lastfolderlevel);
+                    Directory.CreateDirectory(destMinusSlash + "\\" + lastfolderlevel);
+                }
+                catch (IOException ex)
+                {
+                    output += _cmdlet + ": ERR: " + ex.Message;
+                    return false;
+                }
+            }
+#if LOCALDEBUG
+            WriteVerbose(_cmdlet + "(" + level.ToString() + "): past dir createcreations");
+#endif
+
+
+            foreach (string sd in Directory.GetDirectories(source))
+            {
+#if LOCALDEBUG
+                WriteVerbose(_cmdlet + "(" + level.ToString() + "): subdir " + sd);
+#endif
+                try
+                {
+                    string sdMinus = sd;
+                    if (sdMinus.EndsWith("\\"))
+                        sdMinus = sd.Substring(0, sd.Length - 1);
+                    
+                    //string td = sdMinus.Substring(sdMinus.LastIndexOf('\\'));
+                    CopyThisDirectory(sdMinus, destMinusSlash + "\\" + lastfolderlevel, level+1);
+                }
+                catch (IOException ex)
+                {
+                    output += _cmdlet + "(" + level.ToString() + "): ERROR: " + ex.Message;
+                    return false;
+                }
+            }
+#if LOCALDEBUG
+            WriteVerbose(_cmdlet + "(" + level.ToString() + "): past subdirs");
+#endif
+
+            foreach (string sf in Directory.GetFiles(source))
+            {
+#if LOCALDEBUG
+                WriteVerbose(_cmdlet + "(" + level.ToString() + "): subfile " + sf);
+#endif
+                string tfn = sf.Substring(sf.LastIndexOf('\\'));
+                string td = dest + "\\" + lastfolderlevel + "\\" + tfn;
+                //if (!td.StartsWith("\\\\?\\"))
+                //        td = "\\\\?\\" + td;
+                try
+                {
+                    WriteVerbose(_cmdlet + "(" + level.ToString() + "): Copy file " + sf + " to " + td);
+                    File.Copy(sf,td);
                 }
                 catch (IOException)
                 {
                     // Copy to temp file and do the RunOnce key thing
-                    DelayCopy(sf, dest + tf);
+                    DelayCopyFile(sf, td);
                 }
             }
+#if LOCALDEBUG
+            WriteVerbose(_cmdlet + "(" + level.ToString() + "): past filecopy");
+#endif
+            return true;
         }
 
-        private void DelayCopy(string source, string dest)
+        
+        private void DelayCopyFile(string source, string dest)
         {
             string dd = dest.Substring(0, dest.LastIndexOf('\\'));
             string df = dest.Substring(dest.LastIndexOf('\\') + 1);
             string tfn = dest + ".tmp";
 
-            WriteVerbose(_cmdlet + ": WARNING - '" + dest + "' IN USE, performing delayed copy using temp file and runonce key.");
+            output += _cmdlet + ": WARNING - '" + dest + "' IN USE, performing delayed copy using temp file and runonce key.";
 
             File.Copy(source, tfn);
             RegistryKey rk = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\RunOnce", true);
@@ -129,6 +216,7 @@ namespace PassiveInstall.Cmdlets
             }
             WriteWarning(_cmdlet + ":  A file copy operation requires a RunOnce entry to complete.  A reboot is needed.");
         }
+        
         protected override void EndProcessing()
         {
 

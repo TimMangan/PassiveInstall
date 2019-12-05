@@ -65,13 +65,13 @@
       <Component Id="ProductComponent" Guid="F589E2DF-3D4C-4EE3-8E09-69CFA9CA96CF">
         <File Id="License.rtf" Name="License.rtf" Source="License.rtf" Vital="no" KeyPath="no" DiskId="1" Hidden="no" />
         <File Id="PassiveInstallIcon.ico" Name="PassiveInstallIcon.ico" Source="..\PassiveInstall\Icon1.ico" Vital="no" KeyPath="no" DiskId="1" Hidden="yes" />
-        <File Id="PassiveInstall.dll" Name="PassiveInstall.dll" Source="..\PassiveInstall\bin\Release\PassiveInstall.dll"
+        <File Id="PassiveInstall.dll" Name="PassiveInstall.dll" Source="..\PassiveInstall\bin\x86\Release\PassiveInstall.dll"
               Vital="yes" KeyPath="yes" DiskId="1" >
           <netfx:NativeImage Id="PassiveInstall.ni.dll" Platform="all" Priority="1"  />
         </File>
-        <File Id="Interop.IWshRuntimeLibrary.dll" Name="Interop.IWshRuntimeLibrary.dll" Source="..\PassiveInstall\bin\Release\Interop.IWshRuntimeLibrary.dll"
+        <File Id="Interop.IWshRuntimeLibrary.dll" Name="Interop.IWshRuntimeLibrary.dll" Source="..\PassiveInstall\bin\x86\Release\Interop.IWshRuntimeLibrary.dll"
               Vital="yes" KeyPath="no" DiskId="1" Hidden="yes" />
-        <File Id="Interop.Shell32.dll" Name="Interop.Shell32.dll" Source="..\PassiveInstall\bin\Release\Interop.Shell32.dll"
+        <File Id="Interop.Shell32.dll" Name="Interop.Shell32.dll" Source="..\PassiveInstall\bin\x86\Release\Interop.Shell32.dll"
               Vital="yes" KeyPath="no" DiskId="1" Hidden="yes" />
         <File Id="PassiveInstall.psd1" Name="PassiveInstall.psd1" Source="PassiveInstall.psd1" Vital="yes" KeyPath="no" DiskId="1" Hidden="no" />
         <!-- Not needed since this is now a standard path

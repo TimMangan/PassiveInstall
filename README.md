@@ -112,3 +112,10 @@ Start-Sleep 20
 
 # Download Binaries:
 You can find pre-built and signed binaries at this link at [TMurgent Technologies]](http://www.tmurgent.com/AppV/en/resources/tools-downloads/tools-packaging/117-tools/packaging-tools/435-passiveinstall)
+
+# Building from source:
+  * Download the sources into Visual Studio with Wix Installer and extensions added. No NuGet packages are used.
+  * Add a code signing certificate file into the root folder of the project (next to the solution) called "strongname.pfx".
+  * If the certificate is password protected, edit all three project properties and in the post build script add /p password to the command lines.
+  * Build x86 and x64 release versions of the PassiveInstall project.
+  * Build the PassiveInstallx86 and PassiveInstallx64 Windows Installer projects. 

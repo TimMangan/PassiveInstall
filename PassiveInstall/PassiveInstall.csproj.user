@@ -10,4 +10,9 @@
     <StartArguments>-noexit -command "&amp;{ import-module .\PassiveInstall.dll -verbose}"</StartArguments>
     <StartAction>Program</StartAction>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <StartProgram>C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe</StartProgram>
+    <StartArguments>-noexit -command "&amp;{ import-module .\PassiveInstall.dll -verbose}"</StartArguments>
+    <StartAction>Program</StartAction>
+  </PropertyGroup>
 </Project>
