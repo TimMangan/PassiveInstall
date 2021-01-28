@@ -21,7 +21,7 @@ namespace PassiveInstall.Cmdlets
         [Parameter(
             Mandatory = true,
             Position = 0,
-            HelpMessage = "Shortcut name(s) to be removed from the desktop. Do not include folders; the \".lnk\" is optional."
+            HelpMessage = "Shortcut name(s) to be removed from the desktop. Do not include folders; the \".lnk\" or \".url\" is optional."
           )]
         [Alias("Files")]
         public string[] Names
@@ -66,106 +66,25 @@ namespace PassiveInstall.Cmdlets
                     try
                     {
                         string tryname = sourceName;
-                        string trynameNoLnkExt;
-                        if (!sourceName.ToUpper().EndsWith(".LNK"))
+                        string trynameAddLnkExt = null;
+                        string trynameAddUrlExt = null; ;
+                        if (!sourceName.ToUpper().EndsWith(".LNK") &&
+                            !sourceName.ToUpper().EndsWith(".URL"))
                         {
-                            tryname += ".lnk";
-                            trynameNoLnkExt = sourceName;
+                            trynameAddLnkExt = tryname + ".LNK";
+                            trynameAddUrlExt = tryname + ".URL";
                         }
-                        else
-                        {
-                            trynameNoLnkExt = sourceName.Substring(0, sourceName.LastIndexOf('.'));
-                        }
-                        WriteVerbose(_cmdlet + ": Looking for '" + tryname + "' or '" + trynameNoLnkExt + "'.");
+                        
+                        WriteVerbose(_cmdlet + ": Looking for '" + tryname + "'.");
 
                         // Look on user, all user's, and default desktops, remove if present, ignore otherwise.
-                        // Note that sometimes the lnk extension is not on the filename!
-                        
-                        string UserDesktopName         = "C:\\Users\\" + Environment.UserName + "\\Desktop\\" + tryname;
-                        string UserDesktopNameNoLnkExt = "C:\\Users\\" + Environment.UserName + "\\Desktop\\" + trynameNoLnkExt;
-                        if (File.Exists(UserDesktopName))
-                        {
-                            if (this.ShouldProcess(UserDesktopName,"Remove"))
-                            {
-                                File.Delete(UserDesktopName);
-                                output += _cmdlet + ": " + UserDesktopName + " deleted.\n";
-                                needRefresh = true;
-                            }
-                            else
-                            {
-                                output += _cmdlet + ": " + UserDesktopName + " would have been deleted.\n";
-                            }
-                        }
-                        else if (File.Exists(UserDesktopNameNoLnkExt))
-                        {
-                            if (this.ShouldProcess(UserDesktopNameNoLnkExt, "Remove"))
-                            {
-                                File.Delete(UserDesktopNameNoLnkExt);
-                                output += _cmdlet + ": " + UserDesktopNameNoLnkExt + " deleted.\n";
-                            }
-                            else
-                            {
-                                output += _cmdlet + ": " + UserDesktopNameNoLnkExt + " would have been deleted.\n";
-                            }
-                        }
+                        // Note that sometimes the lnk or url extension is not on the filename!
+                        output += ProcessThis("C:\\Users\\" + Environment.UserName + "\\Desktop", tryname, trynameAddLnkExt, trynameAddUrlExt);
 
-                        string PublicDesktopName         = "C:\\Users\\Public\\Desktop\\" + tryname;
-                        string PublicDesktopNameNoLnkExt = "C:\\Users\\Public\\Desktop\\" + trynameNoLnkExt; 
-                        if (File.Exists(PublicDesktopName))
-                        {
-                            if (this.ShouldProcess(PublicDesktopName, "Remove"))
-                            {
-                                File.Delete(PublicDesktopName);
-                                output += _cmdlet + ": " + PublicDesktopName + " deleted.\n";
-                                needRefresh = true;
-                            }
-                            else 
-                            {
-                                output += _cmdlet + ": " + PublicDesktopName + " would have been deleted.\n";
-                            }
-                        }
-                        else if (File.Exists(PublicDesktopNameNoLnkExt))
-                        {
-                            if (this.ShouldProcess(PublicDesktopNameNoLnkExt, "Remove"))
-                            {
-                                File.Delete(PublicDesktopNameNoLnkExt);
-                                output += _cmdlet + ": " + PublicDesktopNameNoLnkExt + " deleted.\n";
-                                needRefresh = true;
-                            }
-                            else
-                            {
-                                output += _cmdlet + ": " + PublicDesktopNameNoLnkExt + " would have been deleted.\n";
-                            }
-                        }
+                        output += ProcessThis("C:\\Users\\Public\\Desktop", tryname, trynameAddLnkExt, trynameAddUrlExt);
 
-                        string DefaultDesktopName         = "C:\\Users\\Default\\Desktop\\" + tryname;
-                        string DefaultDesktopNameNoLnkExt = "C:\\Users\\Default\\Desktop\\" + trynameNoLnkExt;
-                        if (File.Exists(DefaultDesktopName))
-                        {
-                            if (this.ShouldProcess(DefaultDesktopName, "Remove"))
-                            {
-                                File.Delete(DefaultDesktopName);
-                                output += _cmdlet + ": " + DefaultDesktopName + " deleted.\n";
-                                needRefresh = true;
-                            }
-                            else
-                            {
-                                output += _cmdlet + ": " + DefaultDesktopName + " would have been deleted.\n";
-                            }
-                        }
-                        else if (File.Exists(DefaultDesktopNameNoLnkExt))
-                        {
-                            if (this.ShouldProcess(DefaultDesktopNameNoLnkExt, "Remove"))
-                            {
-                                File.Delete(DefaultDesktopNameNoLnkExt);
-                                output += _cmdlet + ": " + DefaultDesktopNameNoLnkExt + " deleted.\n";
-                                needRefresh = true;
-                            }
-                            else 
-                            {
-                                output += _cmdlet + ": " + DefaultDesktopNameNoLnkExt + " would have been deleted.\n";
-                            }
-                        }
+                        output += ProcessThis("C:\\Users\\Default\\Desktop", tryname, trynameAddLnkExt, trynameAddUrlExt);
+
                     }
                     catch (Exception ex)
                     {
@@ -182,6 +101,76 @@ namespace PassiveInstall.Cmdlets
                 SHChangeNotify(0x8000000, 0x1000, IntPtr.Zero, IntPtr.Zero);
         }
 
+        private string ProcessThis(string BaseFolder, string tryname, string trynameAddLnkExt, string trynameAddUrlExt)
+        {
+            string output = "";
+
+            string DesktopName = BaseFolder + "\\" + tryname;
+            string DesktopNameAddLnkExt = BaseFolder + "\\" + trynameAddLnkExt;
+            string DesktopNameAddUrlExt = BaseFolder + "\\" + trynameAddUrlExt;
+
+            if (File.Exists(DesktopName))
+            {
+                if (this.ShouldProcess(DesktopName, "Remove"))
+                {
+                    try
+                    {
+                        File.Delete(DesktopName);
+                        output += _cmdlet + ": " + DesktopName + " deleted.\n";
+                        needRefresh = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        output += _cmdlet + ": Exception deleting " + DesktopName + ". " + ex.Message;
+                    }
+                }
+                else
+                {
+                    output += _cmdlet + ": " + DesktopName + " would have been deleted.\n";
+                }
+            }
+            if (trynameAddLnkExt != null && File.Exists(DesktopNameAddLnkExt))
+            {
+                if (this.ShouldProcess(DesktopNameAddLnkExt, "Remove"))
+                {
+                    try
+                    {
+                        File.Delete(DesktopNameAddLnkExt);
+                        output += _cmdlet + ": " + DesktopNameAddLnkExt + " deleted.\n";
+                        needRefresh = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        output += _cmdlet + ": Exception deleting " + DesktopNameAddLnkExt + ". " + ex.Message;
+                    }
+                }
+                else
+                {
+                    output += _cmdlet + ": " + DesktopNameAddLnkExt + " would have been deleted.\n";
+                }
+            }
+            if (trynameAddUrlExt != null && File.Exists(DesktopNameAddUrlExt))
+            {
+                if (this.ShouldProcess(DesktopNameAddUrlExt, "Remove"))
+                {
+                    try
+                    {
+                        File.Delete(DesktopNameAddUrlExt);
+                        output += _cmdlet + ": " + DesktopNameAddUrlExt + " deleted.\n";
+                        needRefresh = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        output += _cmdlet + ": Exception deleting " + DesktopNameAddUrlExt + ". " + ex.Message;
+                    }
+                }
+                else
+                {
+                    output += _cmdlet + ": " + DesktopNameAddUrlExt + " would have been deleted.\n";
+                }
+            }
+            return output;
+        }
         protected override void EndProcessing()
         {
             base.EndProcessing();

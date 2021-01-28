@@ -197,9 +197,9 @@ namespace PassiveInstall.Cmdlets
                 {
                     WriteVerbose(_cmdlet + ":\tNo shortcut folder specified, using default...");
                     if (CurrentUser.IsPresent)
-                        UseShortcutFolder = Environment.GetEnvironmentVariable("APPDATA") + "\\Microsoft\\Windows\\Start Menu\\";
+                        UseShortcutFolder = Environment.GetFolderPath(Environment.SpecialFolder.StartMenu) + "\\";
                     else
-                        UseShortcutFolder = Environment.GetEnvironmentVariable("ALLUSERSPROFILE") + "\\Microsoft\\Windows\\Start Menu\\";
+                        UseShortcutFolder = Environment.GetFolderPath(Environment.SpecialFolder.CommonStartMenu) + "\\";
                 }
                 else
                 {
@@ -208,13 +208,13 @@ namespace PassiveInstall.Cmdlets
                     {
                         WriteVerbose(_cmdlet + ":\tRelative path shortcut folder provided, fixing up...");
                         if (CurrentUser.IsPresent)
-                            UseShortcutFolder = Environment.GetEnvironmentVariable("APPDATA") + "\\Microsoft\\Windows\\Start Menu\\Programs\\" + _ShortcutFolder;
+                            UseShortcutFolder = Environment.GetFolderPath(Environment.SpecialFolder.StartMenu) + "\\Programs\\" + _ShortcutFolder;
                         else
-                            UseShortcutFolder = Environment.GetEnvironmentVariable("ALLUSERSPROFILE") + "\\Microsoft\\Windows\\Start Menu\\Programs\\" + _ShortcutFolder;
+                            UseShortcutFolder = Environment.GetFolderPath(Environment.SpecialFolder.CommonStartMenu) + "\\Programs\\" + _ShortcutFolder;
                     }
-                    if (!UseShortcutFolder.EndsWith("\\"))
-                        UseShortcutFolder += "\\";
                 }
+                if (!UseShortcutFolder.EndsWith("\\"))
+                    UseShortcutFolder += "\\";
                 string FullShortcutPath = UseShortcutFolder + _ShortcutName;
 
                 // Now rebuild the folder because the Shortcutname might include folders!

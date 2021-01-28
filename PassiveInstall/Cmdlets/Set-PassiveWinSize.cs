@@ -139,33 +139,42 @@ namespace PassiveInstall.Cmdlets
                     IntPtr wh = System.Diagnostics.Process.GetCurrentProcess().MainWindowHandle;
                     SetWindowPos(wh, (IntPtr)1, c.X, c.Y, s.Width, s.Height, 0x28F);
 
-    }
+                }
                 else
                 {
-                    if (_width > 0 || _height > 0)
+                    try
                     {
-                        if (_width > 0)
-                            s.Width = _width;
-                        if (_height > 0)
-                            s.Height = _height;
-                        //NB: Windows size cannot exceed the buffer size, so fix the buffer size if needed.
-                        System.Management.Automation.Host.Size bs = new System.Management.Automation.Host.Size(Host.UI.RawUI.BufferSize.Width, Host.UI.RawUI.BufferSize.Height);
-                        if (s.Height > bs.Height || s.Width > bs.Width)
+                        if (_width > 0 || _height > 0)
                         {
-                            if (s.Height > bs.Height)
-                                bs.Height = s.Height;
-                            if (s.Width > bs.Width)
-                                bs.Width = s.Width;
-                            Host.UI.RawUI.BufferSize = bs;
+                            if (_width > 0)
+                                s.Width = _width;
+                            if (_height > 0)
+                                s.Height = _height;
+                            //NB: Windows size cannot exceed the buffer size, so fix the buffer size if needed.
+                            System.Management.Automation.Host.Size bs = new System.Management.Automation.Host.Size(Host.UI.RawUI.BufferSize.Width, Host.UI.RawUI.BufferSize.Height);
+                            if (s.Height > bs.Height || s.Width > bs.Width)
+                            {
+                                if (s.Height > bs.Height)
+                                    bs.Height = s.Height;
+                                if (s.Width > bs.Width)
+                                    bs.Width = s.Width;
+                                Host.UI.RawUI.BufferSize = bs;
+                            }
+                            Host.UI.RawUI.WindowSize = s;
                         }
-                        Host.UI.RawUI.WindowSize = s;
-                    }
-                    if (_posX >= 0 || _posY >= 0)
-                    {
-                        // The lack of 0x02 means move the window, other bits say don't change other stuff
-                        IntPtr wh = System.Diagnostics.Process.GetCurrentProcess().MainWindowHandle;
-                        SetWindowPos(wh, (IntPtr)1, _posX, _posY, s.Width, s.Height, 0x20D);
+                        if (_posX >= 0 || _posY >= 0)
+                        {
+                            // The lack of 0x02 means move the window, other bits say don't change other stuff
+                            IntPtr wh = System.Diagnostics.Process.GetCurrentProcess().MainWindowHandle;
+                            SetWindowPos(wh, (IntPtr)1, _posX, _posY, s.Width, s.Height, 0x20D);
 
+                        }
+                    }
+                    catch
+                    {
+                        // Sometimes people write scripts using a bit monitor and set the values too large for someone remoting into a Vm showing fewer pixels,
+                        // leading to an exception here when you try to make the window too big.  Rather than generate an error (done previously), we should
+                        // just hide the error and move on.
                     }
                 }
                 if (_title != null)

@@ -162,7 +162,7 @@ namespace PassiveInstall.Cmdlets
                 if (!_ShortcutName.ToUpper().EndsWith(".LNK"))
                     _ShortcutName += ".lnk";
                 string UseShortcutFolder;
-                UseShortcutFolder = "C:\\Users\\" + Environment.UserName + "\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\";
+                UseShortcutFolder = "C:\\Users\\" + Environment.UserName + "\\Desktop\\";
                 string FullShortcutPath = UseShortcutFolder + _ShortcutName;
 
 

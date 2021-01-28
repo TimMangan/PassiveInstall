@@ -29,7 +29,7 @@ namespace PassiveInstall.Cmdlets
         [Parameter(
             Mandatory = false,
             Position = 0,
-            HelpMessage = "Switch to request elevation (if needed)."
+            HelpMessage = "A switch to request elevation (if needed)."
           )]
         public SwitchParameter AsAdmin;
         #endregion

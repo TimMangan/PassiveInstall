@@ -10,6 +10,80 @@ In a company environment, especially those at the "enterprise level", IT persone
   * Configuration of the app for the environment, often including disabling auto-updates
   * Setting confugurations typically used and eliminating "first use" activities for the end-user
 
+# Commandlets:
+The following is a summary of the cmdlets.  See PassiveInstall.dll-help.xml for more details.
+  * **Approve-PassiveElevation**
+		Checks if elevation for RunAsAdministrator is present.  With the -AsAdmin switch it will restart your script with a RunAs.
+  * **Copy-PassiveFile**	
+		Copies a file to the designated location, making sure intervening directories are created if needed and 
+		optionaly renaming it on the fly.  Existing files over-written by default.
+  * **Copy-PassiveFolder**
+		Copies a folder to the destination, making sure intervening directories are created if needed. Existing files not over-written by default.
+  * **Disable-PassiveWindowsService**
+		Checks to see that the service exists and disables it.  Note: it does not stop the service if running.
+  * **Install-PassiveInstallFile**
+		Performs appropriate (file type dependent) installation activity on MSI, MSP, EXE, ZIP, PS1, BAT, CMD, REG
+  * **Move-PassiveFolder**
+		Moves the source folder underneath the destination folder.  The destination folder will automatically be 
+		created if not present.
+  * **Move-PassiveRegistryKey** 
+		Moves the source key underneath the destination key.  Typically used to move HKLM to HKCU. 
+		The destination key will automatically be created if not present.
+  * **New-PassiveAppPathSearch** 
+		Registers the application for windows start menu search.
+  * **New-PassiveDesktopShortcut** 
+		Creates a shortcut on the current user's desktop as specified.
+  * **New-PassiveEnvironmentVariable** 
+		Changes the value of an existing environment variable or create a new one with the value.
+  * **New-PassiveAppPathSearch**
+		Creates/updates an AppPath entry to support start menu search for the target.
+  * **New-PassiveFolderIfNotPresent** 
+		Checks if a folder exists, and if not it creates it.
+  * **New-PassiveRegistryKeyIfNotPresent** 
+		Checks if a registry key exists, and if not it creates it.
+  * **New-PassiveStartmenuShortcut** 
+		Creates a shortcut on the start menu as specified.
+  * **Optimize-PassiveNgenCompileFile**
+		Performs an ngen compilation of an MSIL file into the native interface format.
+  * **Optimize-PassiveNgenQueues** 
+		Locates and flushes each of the NGEN optimization queues.
+  * **Remove-PassiveDesktopShortcuts** 
+		Removes the named shortcuts by name without needing to know the path.
+  * **Remove-PassiveEnvironmentVariables** 
+		Deletes the named environment variables, if present.
+  * **Remove-PassiveFiles**
+		Removes a list of files.
+  * **Remove-PassiveFolders** 
+		Deletes the named Folders, if present.
+  * **Remove-PassiveInstallerCacheFilePattern**
+		Removes files matching a filename pattern if located in the named folder, but with option for only if created in the last 24 hours.
+  * **Remove-PassiveInstallerCacheFolders**
+		Removes the named folder, but with options for only if emoty and only if created in the last 24 hours.
+  * **Remove-PassiveRegistryItem**
+		Deletes a registry item or key (including child items/nodes).
+  * **Remove-PassiveStartMenuShortcuts** 
+		Removes the named shortcuts by name, without needing to know the path.
+  * **Set-PassiveShortcutFixupBatCmd** 
+		Fixes an issue with shortcuts that occurs with App-V 5. Shortcuts that simply link to a file ending 
+		in .Bat or .Cmd fail to work correctly under App-V 5.x.
+        This fixup re-writes the shortcut to use C:\Windows\System32\cmd.exe pointing to the cmd/bat file.
+  * **Set-PassiveShortcutFixupReg**
+		Fixes an issue with shortcuts that occurs with App-V 5. Shortcuts that simply link to a file ending 
+		in .Reg fail to work correctly under App-V 5.x.
+        This fixup re-writes the shortcut to use C:\Windows\System32\reg.exe pointing to the reg file.
+  * **Set-PassiveServiceAccount**
+		Changes the service (logon) account for the named windows service.
+  * **Set-PassiveShortcutFixupSpaceAtEnd**
+		Fixes an issue with shortcuts that occurs with App-V 5. Shortcuts that have a space at the end of the 
+		filename fail to work correctly under App-V 5.x.
+        This fixup re-writes the shortcut to remove the trailing space in the name.
+  * **Set-PassiveWinColors** 
+		Changes the color scheme in the PowerShell window, optionally clearing the buffer.
+  * **Set-PassiveWinSize** 
+		Changes the width, height, position, and/or title, of the PowerShell window, or hides it altogether.
+  * **Show-PassiveTimer**
+		Sleep in ms with progress bar.  Optional message.
+
 # Example:
 ````
 # PassiveInstall.ps1
@@ -42,6 +116,12 @@ $DoSilent = 0  #Set to 1 for silent instead of passive
 
 function Run_CustomInstall
 {    
+    Write-Host ""
+    Write-Host ""
+    Write-Host ""
+    Write-Host ""
+    Write-Host ""
+    Write-Host ""
     if ($DoSilent -eq 1)
     {
         Install-PassiveInstallFile -Installer "$($executingScriptDirectory)\vcredist_14\vcredist_x64.exe" -Arguments '/q'-DoSilent
@@ -74,7 +154,6 @@ if ($DoSilent -eq 1)
 {
     Set-PassiveWinSize 10 7 5 5 -Title 'PowerShell - PassiveInstall.ps1' -DoSilent
     # Ensure we are running elevated
-    #####SilentInstall_EnsureElevated $PSCommandPath
     Approve-PassiveElevation -AsAdmin
 }
 else
@@ -104,7 +183,7 @@ Write-Output $err >> $InstallerLogFile
 #---------------------------------------------------------------
 #                  Standard wrapup area (DO NOT MODIFY)
 write-host -ForegroundColor "Green"  "Done."
-Show-PassiveTimer 20000 "End of script, Ctrl-C to end now or wait for timer. Left-Click on window to pause."
+Show-PassiveTimer 20000 "End of script, P to pause."
 Start-Sleep 20
 #                    end
 #---------------------------------------------------------------

@@ -12,7 +12,7 @@
         <maml:para>Checks if elevation present, optionally elevating if needed.</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2017, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>Approve</command:verb>
       <command:noun>PassiveElevation</command:noun>
@@ -120,7 +120,7 @@
         <maml:para>Copies a file to the given location.</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2017, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>Copy</command:verb>
       <command:noun>PassiveFile</command:noun>
@@ -212,7 +212,7 @@
       <command:parameter aliases="none" position="3" pipelineInput="false" globbing="false" required="false">
         <maml:name>NoOverWrite</maml:name>
         <maml:description>
-          <maml:para>When specified, aborts the copy if the destination file exists.</maml:para>
+          <maml:para>When specified, aborts the copy if the destination file exists. Otherwise the default behavior is to overwrite.</maml:para>
         </maml:description>
         <command:parameterValue variableLength="false" required="false">SwitchParameter</command:parameterValue>
         <dev:type>
@@ -313,7 +313,7 @@
         <maml:para>Copies a folder (and its contents) to the given location.</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2017, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>Copy</command:verb>
       <command:noun>PassiveFolder</command:noun>
@@ -340,6 +340,12 @@
             <maml:para>Destination folder that the source folder will be copied into.</maml:para>
           </maml:description>
         </command:parameter>
+        <command:parameter aliases="none" position="2" pipelineInput="false" globbing="false" required="false">
+          <maml:name>Overwrite</maml:name>
+          <maml:description>
+            <maml:para>When specified, if the destination file exists, do overwrite it.  If the file is in use, make a temporary copy and add a RunOnce key to complete the operation on next reboot.</maml:para>
+          </maml:description>
+        </command:parameter>
       </command:syntaxItem>
     </command:syntax>
 
@@ -364,6 +370,18 @@
         <command:parameterValue variableLength="true" required="true">String</command:parameterValue>
         <dev:type>
           <maml:name>String</maml:name>
+          <maml:uri/>
+        </dev:type>
+        <dev:defaultValue>none</dev:defaultValue>
+      </command:parameter>
+      <command:parameter aliases="none" position="2" pipelineInput="false" globbing="false" required="false">
+        <maml:name>OverWrite</maml:name>
+        <maml:description>
+          <maml:para>When specified, overwrite the file if the destination file exists. Otherwise the default behavior is to NOT overwrite.</maml:para>
+        </maml:description>
+        <command:parameterValue variableLength="false" required="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
           <maml:uri/>
         </dev:type>
         <dev:defaultValue>none</dev:defaultValue>
@@ -441,7 +459,7 @@
         <maml:para>Sets each listed windows service in the Disabled state.</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2017, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>Disable</command:verb>
       <command:noun>PassiveWindowsServices</command:noun>
@@ -569,7 +587,7 @@
         <maml:para>Performs the appropriate installation activity on the file provided.</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2017, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>Install</command:verb>
       <command:noun>PassiveInstallFile</command:noun>
@@ -864,7 +882,7 @@
         <maml:para>Moves the source folder under the destination.</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2017, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>Move</command:verb>
       <command:noun>PassiveFolder</command:noun>
@@ -988,7 +1006,7 @@
         <maml:para>Moves the source Key under the destination Key.</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2017, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>Move</command:verb>
       <command:noun>PassiveRegistryKey</command:noun>
@@ -1154,7 +1172,7 @@
         <maml:para>Creates/Updates an AppPath entry for Windows Start Menu search.</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2017, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>New</command:verb>
       <command:noun>PassiveAppPathSearch</command:noun>
@@ -1279,7 +1297,7 @@
         <maml:para>Creates a shortcut to the current user's desktop.</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2017, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>New</command:verb>
       <command:noun>PassiveDesktopShortcut</command:noun>
@@ -1537,7 +1555,7 @@
         <maml:para>Creates a new environment variable or changes the value to an existing one..</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2017, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>New</command:verb>
       <command:noun>PassiveEnvironmentVariable</command:noun>
@@ -1680,7 +1698,7 @@
         <maml:para>Creates a folder if it is not already present on the system.</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2017, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>New</command:verb>
       <command:noun>PassiveFolderIfNotPresent</command:noun>
@@ -1786,7 +1804,7 @@
         <maml:para>Creates a registry key if it is not already present on the system.</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2017, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>New</command:verb>
       <command:noun>PassiveRegistryKeyIfNotPresent</command:noun>
@@ -1912,7 +1930,7 @@
         <maml:para>Creates a shortcut to the Start Menu.</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2017, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>New</command:verb>
       <command:noun>PassiveStartMenuShortcut</command:noun>
@@ -2251,7 +2269,7 @@
         <maml:para>Flush all of the NGEN queues on the system.</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2017, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>Optimize</command:verb>
       <command:noun>PassiveNgenQueues</command:noun>
@@ -2376,7 +2394,7 @@
         <maml:para>Performs a native inteface compilation of the named file.</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2017, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>Optimize</command:verb>
       <command:noun>PassiveNgenCompileFile</command:noun>
@@ -2558,7 +2576,7 @@
         <maml:para>Removed the named shortcut(s) if on the desktop, either all user's or current user's.</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2017, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>Remove</command:verb>
       <command:noun>PassiveDesktopShortcuts</command:noun>
@@ -2663,7 +2681,7 @@
         <maml:para>Removed the named environment variables.</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2017, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>Remove</command:verb>
       <command:noun>PassiveEnvironmentVariables</command:noun>
@@ -2768,7 +2786,7 @@
         <maml:para>Removed the named Files.</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2017, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>Remove</command:verb>
       <command:noun>PassiveFiles</command:noun>
@@ -2873,7 +2891,7 @@
         <maml:para>Removed the named Folders.</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2017, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>Remove</command:verb>
       <command:noun>PassiveFolders</command:noun>
@@ -2979,7 +2997,7 @@
         <maml:para>Look at the contents of the named folder and optionally for each subfolder, for filesnames matching a pattern, and remove it (optionally if it was created in the last 24 hours).</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2017, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>Remove</command:verb>
       <command:noun>PassiveInstallerCacheFilePattern</command:noun>
@@ -3177,7 +3195,7 @@
         <maml:para>Delete the named folder, optionally checking first if empty and/or if it was created in the last 24 hours.</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2017, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>Remove</command:verb>
       <command:noun>PassiveInstallerCacheFolders</command:noun>
@@ -3323,7 +3341,7 @@
         <maml:para>Removed the named Registry Key or Item.</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2017, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>Remove</command:verb>
       <command:noun>PassiveRegistryItem</command:noun>
@@ -3464,7 +3482,7 @@
         <maml:para>Removed the named shortcut(s) if on the start menu, either all user's or current user's.</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2017, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>Remove</command:verb>
       <command:noun>PassiveStartMenuShortcuts</command:noun>
@@ -3571,7 +3589,7 @@
         <maml:para>Sets each listed windows service to use the requested account name for the logon account.</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2017, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>Set</command:verb>
       <command:noun>PassiveServiceAccount</command:noun>
@@ -3719,7 +3737,7 @@
         <maml:para>Updates the form of a shortcut to not link directly to a bat or cmd file.</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2017, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>Set</command:verb>
       <command:noun>PassiveShortcutFixupBatCmd</command:noun>
@@ -3826,7 +3844,7 @@
         <maml:para>Updates the form of a shortcut to not link directly to a reg file.</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2017, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>Set</command:verb>
       <command:noun>PassiveShortcutFixupReg</command:noun>
@@ -3933,7 +3951,7 @@
         <maml:para>Updates the form of a shortcut to not link have a space at the end of the filename.</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2017, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>Set</command:verb>
       <command:noun>PassiveShortcutFixupSpaceAtEnd</command:noun>
@@ -4040,7 +4058,7 @@
         <maml:para>Sets each listed windows service to use the requested account name for the logon account.</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2017, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>Set</command:verb>
       <command:noun>PassiveWindowsServiceAccount</command:noun>
@@ -4187,7 +4205,7 @@
         <maml:para>Updates colors used in the current powershell window, optionally clearing the screen.</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2017, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>Set</command:verb>
       <command:noun>PassiveWinColors</command:noun>
@@ -4391,7 +4409,7 @@
         <maml:para>Updates size/position used in the current powershell window.</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2017, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>Set</command:verb>
       <command:noun>PassiveWinSize</command:noun>
@@ -4609,7 +4627,7 @@
         <maml:para>Runs a visual timer for a given time with optional message.</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2019, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>Show</command:verb>
       <command:noun>PassiveTimer</command:noun>
@@ -4623,6 +4641,15 @@
       <maml:para>
        Think of this as a sleep with a progress bar. A progress bar is visually displayed and updated every 200ms until completion. 
        You can specify an optional message for the display.
+      </maml:para>
+      <maml:para>
+        The user can pause the timer by selecting text anywhere in the PowerShell window, or hitting the P button on the keyboard.
+        When paused, hitting the Q button will quite this sleep, while hitting any other key will resume the rest of the sleep.
+      </maml:para>
+      <maml:para>
+        The cmdlet uses a progress bar to show progress against the requested time.  
+        This progress bar is shown near the top of the PowerShell window, similar to other PS progress bars you've seen in the past.
+        I recommend outputting a few blank lines (Write-Console "") at the top of your script so that this bar doesn't hide the important output messages that the user wants to review.
       </maml:para>
     </maml:description>
 

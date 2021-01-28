@@ -1,0 +1,6 @@
+Version 1.2.0
+  Added pause/resume to Start-PassiveSleep.
+  Added Overwrite switch parameter to Copy-PassiveFolder
+  Fix bug in New-PassiveDesktopShortcut to write new shortcut to correct location.
+  Add support in Remove-PassiveDesktopShortcuts and Remove-PassiveStartMenuShortcuts for URL style shortcuts.
+  Documentation updates

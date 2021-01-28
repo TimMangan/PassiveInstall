@@ -35,9 +35,9 @@ CMDLETS
 		Checks if elevation for RunAsAdministrator is present.  With the -AsAdmin switch it will restart your script with a RunAs.
 	Copy-PassiveFile	
 		Copies a file to the designated location, making sure intervening directories are created if needed and 
-		optionaly renaming it on the fly.
+		optionaly renaming it on the fly.  Existing files over-written by default.
 	Copy-PassiveFolder
-		Copies a folder to the destination, making sure intervening directories are created if needed.
+		Copies a folder to the destination, making sure intervening directories are created if needed. Existing files not over-written by default.
 	Disable-PassiveWindowsService
 		Checks to see that the service exists and disables it.  Note: it does not stop the service if running.
 	Install-PassiveInstallFile

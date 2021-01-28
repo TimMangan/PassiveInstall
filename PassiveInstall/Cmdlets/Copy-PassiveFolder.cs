@@ -42,6 +42,13 @@ namespace PassiveInstall.Cmdlets
             get { return _destinationFolder; }
             set { _destinationFolder = value; }
         }
+
+        [Parameter(
+            Mandatory = false,
+            Position = 2,
+            HelpMessage = "A switch to requrest overwriting existing files.  If file is in use a temporary copy is made and runonce key added."
+          )]
+        public SwitchParameter Overwrite;
         #endregion
 
         #region ParameterData
@@ -158,8 +165,9 @@ namespace PassiveInstall.Cmdlets
                     string sdMinus = sd;
                     if (sdMinus.EndsWith("\\"))
                         sdMinus = sd.Substring(0, sd.Length - 1);
-                    
+
                     //string td = sdMinus.Substring(sdMinus.LastIndexOf('\\'));
+                    WriteVerbose(_cmdlet + "(" + level.ToString() + "): Copy Directory " + sdMinus + " to " + destMinusSlash + "\\" + lastfolderlevel);
                     CopyThisDirectory(sdMinus, destMinusSlash + "\\" + lastfolderlevel, level+1);
                 }
                 catch (IOException ex)
@@ -183,13 +191,20 @@ namespace PassiveInstall.Cmdlets
                 //        td = "\\\\?\\" + td;
                 try
                 {
-                    WriteVerbose(_cmdlet + "(" + level.ToString() + "): Copy file " + sf + " to " + td);
-                    File.Copy(sf,td);
-                }
-                catch (IOException)
+                    WriteVerbose(_cmdlet + "(" + level.ToString() + "): Copy file " + sf + " to " + td);  
+                    File.Copy(sf,td, (Overwrite.IsPresent == true));
+                }               
+                catch (IOException ex)
                 {
-                    // Copy to temp file and do the RunOnce key thing
-                    DelayCopyFile(sf, td);
+                    if (Overwrite.IsPresent)
+                    {
+                        // Copy to temp file and do the RunOnce key thing
+                        DelayCopyFile(sf, td);
+                    }
+                    else
+                    {
+                        output += _cmdlet + "(" + level.ToString() + "): ERROR: " + ex.Message;
+                    }
                 }
             }
 #if LOCALDEBUG

@@ -58,7 +58,7 @@ namespace PassiveInstall.Cmdlets
         [Parameter(
             Mandatory = false,
             Position = 3,
-            HelpMessage = "Switch to disable overwrite if file exists."
+            HelpMessage = "Switch to disable overwrite if file exists. Cmdlet defaults to overwriting without it."
             )]
         public SwitchParameter NoOverWrite;
         #endregion

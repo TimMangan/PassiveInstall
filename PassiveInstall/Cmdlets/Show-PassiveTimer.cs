@@ -11,7 +11,7 @@ using System.Timers;
 
 namespace PassiveInstall.Cmdlets
 {
-    // Copyright 2019 TMurgent Technologies, LLP
+    // Copyright 2021 TMurgent Technologies, LLP
 
     [Cmdlet(VerbsCommon.Show, "PassiveTimer")]
     public class Show_PassiveTimer : PSCmdlet
@@ -53,6 +53,8 @@ namespace PassiveInstall.Cmdlets
         int _lenghtCurrentMs;
         ProgressRecord _rcd;
         Timer _aTimer;
+        bool _Paused = false;
+        string _SavedStatus = null;
 
         protected override void BeginProcessing()
         {
@@ -88,21 +90,58 @@ namespace PassiveInstall.Cmdlets
 
         protected void OnTimedEvent(Object source, ElapsedEventArgs e)
         {
-            if (_lenghtCurrentMs > 200)
-                _lenghtCurrentMs -= 200;
-            else
-                _lenghtCurrentMs = 0;
-            if (_lenghtCurrentMs > 0)
+            //Console.Read();
+            if (System.Console.KeyAvailable)
             {
-                _rcd.PercentComplete = ((_lengthMs - _lenghtCurrentMs) * 100) / _lengthMs;
-                WriteProgress(_rcd);
+                ConsoleKeyInfo key = System.Console.ReadKey(true);//true don't print char on console
+                if (key.Key == ConsoleKey.P ||
+                    key.Key == ConsoleKey.CrSel ||
+                    key.Key == ConsoleKey.ExSel ||
+                    key.Key == ConsoleKey.Pause ||
+                    key.Key == ConsoleKey.Select)
+                {
+                    _Paused = true;
+                    if (_SavedStatus == null)
+                        _SavedStatus = _rcd.StatusDescription;
+                    _rcd.StatusDescription = " ***PAUSED*** Any key to resume, Q to quit sleep.";
+                    int isat = ((_lengthMs - _lenghtCurrentMs) * 100) / _lengthMs;
+                    if (isat > 0)
+                        isat--;
+                    _rcd.PercentComplete = isat;
+                }
+                else if (_Paused &&
+                         key.Key == ConsoleKey.Q)
+                {
+                    _Paused = false;
+                    if (_SavedStatus != null)
+                        _rcd.StatusDescription = _SavedStatus;
+                    _lenghtCurrentMs = 0;
+                }
+                else
+                {
+                    _Paused = false;
+                    if (_SavedStatus != null)
+                        _rcd.StatusDescription = _SavedStatus;
+                }
             }
-            else
+            if (!_Paused)
             {
-                _rcd.PercentComplete =100;
-                WriteProgress(_rcd);
-                ((Timer)source).Stop();
-                ((Timer)source).Dispose();
+                if (_lenghtCurrentMs > 200)
+                    _lenghtCurrentMs -= 200;
+                else
+                    _lenghtCurrentMs = 0;
+                if (_lenghtCurrentMs > 0)
+                {
+                    _rcd.PercentComplete = ((_lengthMs - _lenghtCurrentMs) * 100) / _lengthMs;
+                    WriteProgress(_rcd);
+                }
+                else
+                {
+                    _rcd.PercentComplete = 100;
+                    WriteProgress(_rcd);
+                    ((Timer)source).Stop();
+                    ((Timer)source).Dispose();
+                }
             }
         }
         protected override void EndProcessing()

@@ -22,7 +22,7 @@ namespace PassiveInstall.Cmdlets
         [Parameter(
             Mandatory = true,
             Position = 0,
-            HelpMessage = "Shortcut name(s) to be removed from the desktop. Do not include folders; the \".lnk\" is optional."
+            HelpMessage = "Shortcut name(s) to be removed from the desktop. Do not include folders; the \".lnk\" or \".url\" is optional."
           )]
         [Alias("Files")]
         public string[] Names
@@ -61,15 +61,27 @@ namespace PassiveInstall.Cmdlets
                     try
                     {
                         string tryname = sourceName;
-                        if (!sourceName.ToUpper().EndsWith(".LNK"))
-                            tryname += ".lnk";
-                        WriteVerbose(_cmdlet + ": Looking for " + tryname);
-                        // look on user, and all user's;  remove if present, ignore otherwise.
                         string UserStartMenuName = "C:\\Users\\" + Environment.UserName + "\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\";
-                        Count += SearchForAndDeleteName(UserStartMenuName, tryname);
+                        string SystemStartMenuName = Environment.GetEnvironmentVariable("ALLUSERSPROFILE") + "\\Microsoft\\Windows\\Start Menu\\";
 
-                        string SystemStartMenuName = Environment.GetEnvironmentVariable("ALLUSERSPROFILE") + "\\Microsoft\\Windows\\Start Menu\\";  
-                        Count += SearchForAndDeleteName(SystemStartMenuName, tryname);
+                        WriteVerbose(_cmdlet + ": Looking for " + tryname);
+                        if (!sourceName.ToUpper().EndsWith(".LNK") &&
+                            !sourceName.ToUpper().EndsWith(".URL"))
+                        {
+                            string trynamelnk = tryname + ".LNK";
+                            string trynameurl = tryname + ".URL";
+
+                            Count += SearchForAndDeleteName(UserStartMenuName, trynamelnk);
+                            Count += SearchForAndDeleteName(SystemStartMenuName, trynamelnk);
+
+                            Count += SearchForAndDeleteName(UserStartMenuName, trynameurl);
+                            Count += SearchForAndDeleteName(SystemStartMenuName, trynameurl);
+                        }
+                        else
+                        {
+                            Count += SearchForAndDeleteName(UserStartMenuName, tryname);
+                            Count += SearchForAndDeleteName(SystemStartMenuName, tryname);
+                        }
 
                         output += _cmdlet + ": " + Count.ToString() + " shortcuts with name " + tryname + " deleted.\n";
 
@@ -113,9 +125,16 @@ namespace PassiveInstall.Cmdlets
                             {
                                 if (this.ShouldProcess(file, "Remove"))
                                 {
-                                    File.Delete(file);
-                                    output +=_cmdlet + ": \"" + file + "\" deleted.\n";
-                                    needRefresh = true;
+                                    try
+                                    {
+                                        File.Delete(file);
+                                        output += _cmdlet + ": \"" + file + "\" deleted.\n";
+                                        needRefresh = true;
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        output += _cmdlet + ": Exception deleting " + file + ". " + ex.Message;
+                                    }
                                 }
                                 else
                                 {
