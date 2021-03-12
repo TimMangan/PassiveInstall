@@ -122,6 +122,14 @@ namespace PassiveInstall.Cmdlets
         [Alias("RunAsAdmin")]
         public SwitchParameter Admin;
 
+
+
+        [Parameter(
+                    Mandatory = false,
+                    HelpMessage = "Optional switch to indicate that the shortcut should be added to the current user's desktop instead of the  Public (All Users) desktop."
+                )]
+        public SwitchParameter CurrentUser;
+
         #endregion
 
         #region ParameterStorage
@@ -162,8 +170,11 @@ namespace PassiveInstall.Cmdlets
                 if (!_ShortcutName.ToUpper().EndsWith(".LNK"))
                     _ShortcutName += ".lnk";
                 string UseShortcutFolder;
-                UseShortcutFolder = "C:\\Users\\" + Environment.UserName + "\\Desktop\\";
-                string FullShortcutPath = UseShortcutFolder + _ShortcutName;
+                if (CurrentUser.IsPresent)
+                    UseShortcutFolder = "C:\\Users\\" + Environment.UserName + "\\Desktop";
+                else
+                    UseShortcutFolder = Environment.GetEnvironmentVariable("Public") + "\\Desktop";
+                string FullShortcutPath = UseShortcutFolder + "\\" + _ShortcutName;
 
 
                 // Create the shortcut

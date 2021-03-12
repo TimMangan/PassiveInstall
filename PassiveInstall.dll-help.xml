@@ -1371,6 +1371,12 @@
             <maml:para>Optional switch to indicate that the shortcut should have the RunAsAdministrator property set.</maml:para>
           </maml:description>
         </command:parameter>
+        <command:parameter  position="9" pipelineInput="false" globbing="false" required="false">
+          <maml:name>CurrentUser</maml:name>
+          <maml:description>
+            <maml:para>Optional switch to indicate that the shortcut should be created on the the current user's desktop instead of the public (all users) desktop.</maml:para>
+          </maml:description>
+        </command:parameter>
       </command:syntaxItem>
     </command:syntax>
 
