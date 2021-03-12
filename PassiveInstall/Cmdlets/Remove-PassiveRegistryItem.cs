@@ -89,50 +89,110 @@ namespace PassiveInstall.Cmdlets
                         default:
                             throw new Exception("Invalid format to specify a registry hive, should be in form of HKLM or HKEY_LOCAL_MACHINE.");
                     }
-                    bool success = false;
+                    bool isKey = false;
+                    bool isItem = false;
                     try
                     {
-                        if (this.ShouldProcess(_item, "RemoveRegistry"))
+                        RegistryKey sk = rk.OpenSubKey(_item);
+                        if (sk != null)
                         {
-                            rk.DeleteSubKeyTree(_item);
-                            output += _cmdlet + ": SUCCESS Registry key " + StaticClass.DoubleQuoteMe(_item) + " removed.\n";
+                            isKey = true;  
+                            sk.Close();
+                            WriteVerbose(_cmdlet + ": Item identified as a registry key.");
                         }
                         else
                         {
-                            output += _cmdlet + ": Registry key " + StaticClass.DoubleQuoteMe(_item) + " would have been removed.\n";
+                            // Not a key, look for item
+                            if (_item.Contains("\\"))
+                            {
+                                RegistryKey pK = rk.OpenSubKey(_item.Substring(0, _item.LastIndexOf("\\")));
+                                if (pK != null)
+                                {
+                                    object item = pK.GetValue(_item.Substring(_item.LastIndexOf("\\") + 1));
+                                    if (item != null)
+                                    {
+                                        isItem = true;
+                                        WriteVerbose(_cmdlet + ": Item identified as a registry item under a key.");
+                                    }
+                                }
+                                else
+                                {
+                                    output += _cmdlet + ": ERROR parent key is not present.";
+                                }
+                            }
+                            else
+                            {
+                                object item = rk.GetValue(_item);
+                                if (item != null)
+                                {
+                                    isItem = true;
+                                    WriteVerbose(_cmdlet + ": Item identified as a registry item.");
+                                }
+                            }
                         }
-                        success = true;
                     }
-                    catch
+                    catch 
                     {
-                        // ignore
+                        ; // ignore as this is only a test
                     }
 
-                    if (!success)
+
+                    if (isKey)
+                    {
+                        try
+                        {
+                            if (this.ShouldProcess(_item, "RemoveRegistry"))
+                            {
+                                rk.DeleteSubKeyTree(_item);
+                                output += _cmdlet + ": SUCCESS Registry key " + StaticClass.DoubleQuoteMe(_item) + " removed.\n";
+                            }
+                            else
+                            {
+                                output += _cmdlet + ": Registry key " + StaticClass.DoubleQuoteMe(_item) + " would have been removed.\n";
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            output += _cmdlet + ": ERROR Deleting the key " + StaticClass.DoubleQuoteMe(_item) + "  " + ex.Message + "\n";
+                        }
+                    }
+                    else if (isItem)
                     {
                         try
                         {
                             if (this.ShouldProcess(_item, "DeleteValue"))
                             {
-                                rk.DeleteValue(_item);
-                                output += _cmdlet + ": SUCCESS Registry item " + StaticClass.DoubleQuoteMe(_item) + " removed.\n";
+                                if (_item.Contains("\\"))
+                                {
+                                    RegistryKey pK = rk.OpenSubKey(_item.Substring(0, _item.LastIndexOf("\\")),true);
+                                    if (pK != null)
+                                    {
+                                        pK.DeleteValue(_item.Substring(_item.LastIndexOf("\\") + 1));
+                                        pK.Close();
+                                    }
+                                    else
+                                        WriteVerbose(_cmdlet + ": ERROR Parent Key not found");
+                                }
+                                else
+                                {
+                                    rk.DeleteValue(_item);
+                                    output += _cmdlet + ": SUCCESS Registry item " + StaticClass.DoubleQuoteMe(_item) + " removed.\n";
+                                }
                             }
                             else
                             {
                                 output += _cmdlet + ": Registry item " + StaticClass.DoubleQuoteMe(_item) + " would have been removed.\n";
                             }
-                            success = true;
                         }
-                        catch
+                        catch (Exception ex)
                         {
-                            // also ignore
+                            output += _cmdlet + ": ERROR Deleting the item " + StaticClass.DoubleQuoteMe(_item) + "  " + ex.Message + "\n";
                         }
                     }
-
-                    if (!success)
-                        output += _cmdlet + ": ERROR Unable to delete from registry " + StaticClass.DoubleQuoteMe(_item) + ".\n";
                     else
-                        WriteVerbose(_cmdlet + ": Ending with " + StaticClass.DoubleQuoteMe(_item));
+                    {
+                        output += _cmdlet + ": WARNING input hive/item is not a current registry key or item.";
+                    }
                 }
                 catch (Exception ex)
                 {
