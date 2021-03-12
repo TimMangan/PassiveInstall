@@ -1,5 +1,5 @@
 @{
-ModuleVersion = '1.0.0.0'
+ModuleVersion = '2.5.0.0'
 GUID = '7479f155-d1f0-420b-983a-a8844317896a'                
 Author = 'TMurgent Technologies, LLP'
 CompanyName = 'TMurgent Technologies, LLP'

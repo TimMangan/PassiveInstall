@@ -74,15 +74,15 @@
         <File Id="Interop.Shell32.dll" Name="Interop.Shell32.dll" Source="..\PassiveInstall\bin\x86\Release\Interop.Shell32.dll"
               Vital="yes" KeyPath="no" DiskId="1" Hidden="yes" />
         <File Id="PassiveInstall.psd1" Name="PassiveInstall.psd1" Source="PassiveInstall.psd1" Vital="yes" KeyPath="no" DiskId="1" Hidden="no" />
-        <!-- Not needed since this is now a standard path
+        
         <Environment Id="SET_ENV"
                      Action="set"
                      Name="PSModulePath"
                      Part="last"
                      Permanent="no"
                      System="yes"
-                     Value="[MODULES_DIR]" />
-                     -->
+                     Value="[INSTALLDIR]" />
+                     
       </Component>
     </ComponentGroup>
     <ComponentGroup Id="HelpAboutComponents" Directory="EN_US">
