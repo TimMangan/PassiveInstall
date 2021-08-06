@@ -8,6 +8,7 @@ using System.Management.Automation;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.ServiceProcess;
+using Microsoft.Win32;
 
 namespace PassiveInstall.Cmdlets
 {
@@ -54,12 +55,39 @@ namespace PassiveInstall.Cmdlets
                         try
                         {
                             WriteVerbose(_cmdlet + ": Attempting to Disable " + name);
+
                             ServiceController service = new ServiceController(name);
                             if (service != null)
                             {
                                 if (this.ShouldProcess(name, "DisableService"))
                                 {
+                                    if (service.Status != ServiceControllerStatus.Stopped)
+                                    {
+                                        if (service.CanStop)
+                                        {
+                                            TimeSpan timeout = TimeSpan.FromMilliseconds(5000);
+                                            service.Stop();
+                                            service.WaitForStatus(ServiceControllerStatus.Stopped, timeout);
+                                            if (service.Status == ServiceControllerStatus.Running)
+                                            {
+                                                output += _cmdlet + " Service " + name + " Running but stop request timed out.\n";
+                                            }
+                                            else
+                                            {
+                                                output += _cmdlet + " Service " + name + " was stopped.\n";
+                                            }
+                                        }
+                                        else
+                                        {
+                                            output += _cmdlet + " Service " + name + " Running but cannot stop.\n";
+                                        }
+                                    }
+                                   
+
                                     ChangeStartType(service, ServiceStartMode.Disabled);
+                                    // While not causing an error, this doesn't seem to be working for some reason, let's smash it this way
+                                    RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SYSTEM\CurrentControlSet\Services\"+ name, true);
+                                    key.SetValue("Start", 4);
                                     output += _cmdlet + ": Service " + name + " disabled.\n";
                                 }
                                 else
@@ -101,7 +129,12 @@ namespace PassiveInstall.Cmdlets
 
 
         // Courtesy Michael Taylor: https://social.msdn.microsoft.com/Forums/vstudio/en-US/b8f8061f-b015-4527-869e-f4baabaa3313/changing-starttype-of-an-existing-service?forum=csharpgeneral
-        [DllImport("kernel32.dll", SetLastError = true)]
+    ///    [DllImport("kernel32.dll", SetLastError = true)]
+    ///    [return: MarshalAs(UnmanagedType.Bool)]
+    ///    private static extern bool ChangeServiceConfig(SafeHandle hService, uint dwServiceType, uint dwStartType,
+    ///                                                   uint dwErrorControl, string lpBinaryPathName, string lpLoadOrderGroup, out uint lpdwTagId,
+    ///                                                   string lpDependencies, string lpServiceStartName, string lpPassword, string lpDisplayName);
+        [DllImport("advapi32.dll", SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         private static extern bool ChangeServiceConfig(SafeHandle hService, uint dwServiceType, uint dwStartType,
                                                        uint dwErrorControl, string lpBinaryPathName, string lpLoadOrderGroup, out uint lpdwTagId,
@@ -110,8 +143,10 @@ namespace PassiveInstall.Cmdlets
         static void ChangeStartType(ServiceController svc, ServiceStartMode mode)
         {
             uint nTag;
-            ChangeServiceConfig(svc.ServiceHandle, SERVICE_NO_CHANGE, (uint)mode, SERVICE_NO_CHANGE,
-                                      null, null, out nTag, null, null, null, null);
+            
+                ChangeServiceConfig(svc.ServiceHandle, SERVICE_NO_CHANGE, (uint)mode, SERVICE_NO_CHANGE,
+                                          null, null, out nTag, null, null, null, null);
+            
         }
 
 

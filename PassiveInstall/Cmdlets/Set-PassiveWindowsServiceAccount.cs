@@ -100,7 +100,7 @@ namespace PassiveInstall.Cmdlets
 
 
         // Courtesy Michael Taylor: https://social.msdn.microsoft.com/Forums/vstudio/en-US/b8f8061f-b015-4527-869e-f4baabaa3313/changing-starttype-of-an-existing-service?forum=csharpgeneral
-        [DllImport("kernel32.dll", SetLastError = true)]
+        [DllImport("Advapi32.dll", SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         private static extern bool ChangeServiceConfig(SafeHandle hService, uint dwServiceType, uint dwStartType,
                                                        uint dwErrorControl, string lpBinaryPathName, string lpLoadOrderGroup, out uint lpdwTagId,

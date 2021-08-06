@@ -1,0 +1,3 @@
+echo signing...
+"%1Certificate\signtool.exe" sign /fd SHA256 /td SHA256 /a /tr http://timestamp.digicert.com  /f %1Certificate\Digicert3.pfx /p TMurgent1 %2
+echo done signing.

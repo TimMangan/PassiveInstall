@@ -1,3 +1,6 @@
+Version 2.7.0
+	Fix issue with disabling services on newer OS versions.
+
 Version 2.1.0
   Added pause/resume to Start-PassiveSleep.
   Added Overwrite switch parameter to Copy-PassiveFolder
