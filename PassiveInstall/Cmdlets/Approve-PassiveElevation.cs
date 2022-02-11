@@ -98,26 +98,32 @@ namespace PassiveInstall.Cmdlets
                         EnableRaisingEvents = true, // enable WaitForExit()
                         StartInfo = info
                     };
-
+                    int ExitCode = 0;
                     if (this.ShouldProcess(OrigCmdLine, "RunAs"))
                     {
                         process.Start();
                         WriteVerbose(_cmdlet + ": Elevated Process Launched.");
                         process.WaitForExit(); // sleep calling process thread until evoked process exit
+                        ExitCode = process.ExitCode;
                         if (process.ExitCode != 0)
-                            WriteVerbose(_cmdlet + ": Error code returned from new process = " + process.ExitCode.ToString("X"));
+                        {
+                            WriteObject(_cmdlet + ": Error code returned from new process = " + process.ExitCode.ToString("X"));
+                            WriteObject(_cmdlet + ": If using a remote share, ensure elevation has access to the share.");
+                            WriteVerbose(_cmdlet + ": Copy your script files locally or start script from a pre-elevated PowerShell/ISE with access.");
+                        }
                     }
                     else
                     {
                         WriteObject(_cmdlet + ": Re-launching the script wirh RunAs would have been performed.");
                     }
-                    Environment.Exit(0);
+                    Environment.Exit(ExitCode);
                 }
                 //WriteObject(el);
             }
             catch (Exception ex)
             {
                 WriteObject(_cmdlet + ": ERROR " + "Elevation failure " + ex.Message);
+                Environment.Exit(0x0C); // Error_Invalid_Access
             }
         }
 
