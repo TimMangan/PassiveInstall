@@ -17,8 +17,8 @@ LONG DESCRIPTION
 	If you start your powershell window hidden, PassiveInstall cmdlets will support you. Whenever a cmdlet will create 
 	a new window, there will be a -DoSilent optional parameter that	will start the new window hidden as well.
 
-	PassiveInstall is provided on an "As Is" basis free of charge for any suitable purpose.  SPecifically, the software may 
-	not be decompiled or reverse engineered. Copyright 2018, TMurgent Technologies, LLP
+	PassiveInstall is provided on an "As Is" basis free of charge for any suitable purpose.  Specifically, the software may 
+	not be decompiled or reverse engineered. Copyright 2022, TMurgent Technologies, LLP
 
 EXAMPLES
     Typically start with the Install-PassiveInstallFile, in which you supply a file to be installed and optional 
@@ -33,6 +33,9 @@ EXAMPLES
 CMDLETS
 	Approve-PassiveElevation
 		Checks if elevation for RunAsAdministrator is present.  With the -AsAdmin switch it will restart your script with a RunAs.
+		Note that the RunAs account also needs access to share resources is script is on a file share/mapped drive.  
+		This is often problematic when machine is not domain joined.  Either copy script resources locally or open your script
+		in a elevated PowerShell/ISE window and run.
 	Copy-PassiveFile	
 		Copies a file to the designated location, making sure intervening directories are created if needed and 
 		optionaly renaming it on the fly.  Existing files over-written by default.

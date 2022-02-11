@@ -11,9 +11,10 @@ In a company environment, especially those at the "enterprise level", IT persone
   * Setting confugurations typically used and eliminating "first use" activities for the end-user
 
 # Commandlets:
-The following is a summary of the cmdlets.  See PassiveInstall.dll-help.xml for more details.
+The following is a summary of the cmdlets.  See PassiveInstall.dll-help.xml for more details (or run About-PassiveInstall).
   * **Approve-PassiveElevation**
 		Checks if elevation for RunAsAdministrator is present.  With the -AsAdmin switch it will restart your script with a RunAs.
+        NOTE: When using Approve-PassiveElevation with scripts on shares, the elevation account might not have access to the share, especially when your machine is not domain joined.  You can always copy scripts locally or start an elevated PowerShell/ISE and run the file from there.
   * **Copy-PassiveFile**	
 		Copies a file to the designated location, making sure intervening directories are created if needed and 
 		optionaly renaming it on the fly.  Existing files over-written by default.

@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Set_PassiveInstall</RootNamespace>
     <AssemblyName>PassiveInstall</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -51,7 +51,7 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Icon1.ico</ApplicationIcon>
+    <ApplicationIcon>P_128x128.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup />
   <PropertyGroup>
@@ -136,8 +136,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Icon1.ico" />
+    <Content Include="P_128x128.ico" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Cert\Digicert3.pfx" />
     <None Include="strongname.pfx" />
   </ItemGroup>
   <ItemGroup>
@@ -162,6 +164,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>$(SolutionDir)\Certificate\signtool.exe sign /f $(SolutionDir)\Certificate\Digicert3.pfx /p TMurgent1 /fd SHA256  /t http://timestamp.digicert.com $(TargetPath)</PostBuildEvent>
+    <PostBuildEvent>$(SolutionDir)\Certificate\signtool.exe sign /f $(SolutionDir)\Certificate\Digicert3.pfx /p INTERTPASSWORDHERE /fd SHA256  /t http://timestamp.digicert.com $(TargetPath)</PostBuildEvent>
   </PropertyGroup>
 </Project>
