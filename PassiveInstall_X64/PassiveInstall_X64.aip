@@ -18,10 +18,10 @@
     <ROW Property="CompanyLogo" Value="blue.jpg" MultiBuildValue="DefaultBuild:tmurgentlogo3hT_150x150.jpg" Type="1" MsiKey="CompanyLogo"/>
     <ROW Property="LogoIcon" Value="externalui.ico" MultiBuildValue="DefaultBuild:P_128x128.ico" Type="1" MsiKey="LogoIcon"/>
     <ROW Property="Manufacturer" Value="TMurgent Technologies, LLP"/>
-    <ROW Property="ProductCode" Value="1033:{6C9F1B33-C8B6-4F08-979A-ECC304AEB952} " Type="16"/>
+    <ROW Property="ProductCode" Value="1033:{3CC37987-1C28-4DE6-B97E-315A524ADDC0} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="PassiveInstallX64"/>
-    <ROW Property="ProductVersion" Value="2.8.0.0" Type="32" TargetFile="PassiveInstall.dll"/>
+    <ROW Property="ProductVersion" Value="2.9.0.0" Type="32" TargetFile="PassiveInstall.dll"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;AI_SETUPEXEPATH;SETUPEXEDIR"/>
     <ROW Property="UpgradeCode" Value="{FEF9AE78-0D1E-4B30-8A93-C2C137A34648}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>

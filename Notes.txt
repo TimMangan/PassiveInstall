@@ -1,3 +1,6 @@
+Version 2.9.0
+	Treat error code 0xC00001238 as non-error
+
 Version 2.8.0
     Upgrade to .Net 4.8
 	Remove old Wix Installer and replace with Advanced Installer.

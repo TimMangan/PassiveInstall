@@ -186,6 +186,8 @@ Write-Output $err >> $InstallerLogFile
 write-host -ForegroundColor "Green"  "Done."
 Show-PassiveTimer 20000 "End of script, P to pause."
 Start-Sleep 20
+$LASTEXITCODE = 0
+Exit $LASTEXITCODE
 #                    end
 #---------------------------------------------------------------
 ````

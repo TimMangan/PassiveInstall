@@ -164,6 +164,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>$(SolutionDir)\Certificate\signtool.exe sign /f $(SolutionDir)\Certificate\Digicert3.pfx /p INTERTPASSWORDHERE /fd SHA256  /t http://timestamp.digicert.com $(TargetPath)</PostBuildEvent>
+    <PostBuildEvent>$(SolutionDir)\Certificate\signtool.exe sign /f $(SolutionDir)\Certificate\Digicert3.pfx /p ENTERPASSWORDHERE /fd SHA256  /t http://timestamp.digicert.com $(TargetPath)</PostBuildEvent>
   </PropertyGroup>
 </Project>

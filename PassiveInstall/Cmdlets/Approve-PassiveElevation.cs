@@ -104,10 +104,16 @@ namespace PassiveInstall.Cmdlets
                         process.Start();
                         WriteVerbose(_cmdlet + ": Elevated Process Launched.");
                         process.WaitForExit(); // sleep calling process thread until evoked process exit
-                        ExitCode = process.ExitCode;
-                        if (process.ExitCode != 0)
+                        ExitCode =  process.ExitCode;
+                        if ((uint)ExitCode == 0xC000013A)
                         {
-                            WriteObject(_cmdlet + ": Error code returned from new process = " + process.ExitCode.ToString("X"));
+                            // This occurs when no exit code is given by the script exit, and/or when the user closes the process manually.
+                            // We will ignore this.
+                            ExitCode = 0;
+                        }
+                        else if (ExitCode != 0)
+                        {
+                            WriteObject(_cmdlet + ": Error code returned from new process = " + ExitCode.ToString("X"));
                             WriteObject(_cmdlet + ": If using a remote share, ensure elevation has access to the share.");
                             WriteVerbose(_cmdlet + ": Copy your script files locally or start script from a pre-elevated PowerShell/ISE with access.");
                         }
