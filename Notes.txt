@@ -1,3 +1,9 @@
+Version 3.0
+    Added new cmdlets:
+		Get-PassiveFirewallRules
+		Redo-PassiveNewFirewallRules
+Version 2.10
+    Bugfix
 Version 2.9.0
 	Treat error code 0xC00001238 as non-error
 

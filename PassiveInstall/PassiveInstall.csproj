@@ -102,6 +102,7 @@
     <Compile Include="Cmdlets\Approve-PassiveElevation.cs" />
     <Compile Include="Cmdlets\Copy-PassiveFile.cs" />
     <Compile Include="Cmdlets\Copy-PassiveFolder.cs" />
+    <Compile Include="Cmdlets\Get-PassiveFirewallRules.cs" />
     <Compile Include="Cmdlets\Install-PassiveInstallFile.cs" />
     <Compile Include="Cmdlets\Move-PassiveFolder.cs" />
     <Compile Include="Cmdlets\Move-PassiveRegistryKey.cs" />
@@ -114,6 +115,7 @@
     <Compile Include="Cmdlets\Disable-PassiveWindowsServices.cs" />
     <Compile Include="Cmdlets\Optimize-PassiveNgenCompileFIle.cs" />
     <Compile Include="Cmdlets\Optimize-PassiveNgenQueues.cs" />
+    <Compile Include="Cmdlets\Redo-PassiveNewFirewallRules.cs" />
     <Compile Include="Cmdlets\Remove-PassiveInstallerCacheFilePattern.cs" />
     <Compile Include="Cmdlets\Remove-PassiveFilePattern.cs" />
     <Compile Include="Cmdlets\Remove-PassiveInstallerCacheFolders.cs" />
@@ -133,6 +135,7 @@
     <Compile Include="Cmdlets\Set-PassiveWinColors.cs" />
     <Compile Include="Cmdlets\Set-PassiveWinSize.cs" />
     <Compile Include="Statics\StaticClass.cs" />
+    <Compile Include="Structures\FirewallRules.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Icon1.ico" />
@@ -164,6 +167,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>$(SolutionDir)\Certificate\signtool.exe sign /f $(SolutionDir)\Certificate\Digicert3.pfx /p ENTERPASSWORDHERE /fd SHA256  /t http://timestamp.digicert.com $(TargetPath)</PostBuildEvent>
+    <PostBuildEvent>$(SolutionDir)\Certificate\signtool.exe sign /sha1 890C5C4E81A72279B7D39F46DCC6831229133296 /tr http://timestamp.digicert.com /td sha256 /fd sha256  $(TargetPath)</PostBuildEvent>
   </PropertyGroup>
 </Project>

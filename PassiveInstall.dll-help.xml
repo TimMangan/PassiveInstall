@@ -12,7 +12,7 @@
         <maml:para>Checks if elevation present, optionally elevating if needed.</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2026, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>Approve</command:verb>
       <command:noun>PassiveElevation</command:noun>
@@ -54,30 +54,24 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name></maml:name>
+          <maml:name>None.</maml:name>
           <maml:uri></maml:uri>
           <maml:description>
-            <maml:para/>
+            <maml:para>You cannot pipe objects to Approve-PassiveElevation.</maml:para>
           </maml:description>
         </dev:type>
-        <maml:description>
-          <maml:para>You cannot pipe objects to Copy-PassiveFile.</maml:para>
-        </maml:description>
       </command:inputType>
     </command:inputTypes>
 
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>Boolean indicating if elevation is present.</maml:name>
+          <maml:name>Boolean.</maml:name>
           <maml:uri> </maml:uri>
           <maml:description>
-            <maml:para/>
+            <maml:para>Indicates if elevation is (now) present</maml:para>
           </maml:description>
         </dev:type>
-        <maml:description>
-          <maml:para>Boolean indicating if elevation is (now) present.</maml:para>
-        </maml:description>
       </command:returnValue>
     </command:returnValues>
 
@@ -95,19 +89,19 @@
         <maml:introduction>
           <maml:para>Checks elevation and elevates if needed.</maml:para>
         </maml:introduction>
-        <dev:code>PS C:\>Approve-PassiveElevation -AsAdmin</dev:code>
+        
+        <command:code/>
+        <command:code>
+PS>
+PS> Approve-PassiveElevation -AsAdmin
+PS>
+        </command:code>
         <dev:remarks>
           <maml:para>The current elevation level is checked.</maml:para>
-          <maml:para>If the -AsAdmin switch is used and elevation is needed, the script will be restarted in a new process using RunAs, then this copy of the script is terminated.</maml:para>
+          <maml:para>If the -AsAdmin switch is used and elevation is needed, the script will be restarted in a new process using RunAs, then this copy of the script is terminated after the relaunched script terminates.</maml:para>
           <maml:para/>
         </dev:remarks>
-        <command:commandLines>
-          <command:commandLine>
-            <command:commandText/>
-          </command:commandLine>
-        </command:commandLines>
       </command:example>
-
     </command:examples>
   </command:command>
 
@@ -120,7 +114,7 @@
         <maml:para>Copies a file to the given location.</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2026, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>Copy</command:verb>
       <command:noun>PassiveFile</command:noun>
@@ -227,15 +221,12 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name> </maml:name>
+          <maml:name>None</maml:name>
           <maml:uri> </maml:uri>
           <maml:description>
-            <maml:para/>
+            <maml:para>You cannot pipe objects to Copy-PassiveFile.</maml:para>
           </maml:description>
         </dev:type>
-        <maml:description>
-          <maml:para>You cannot pipe objects to Copy-PassiveFile.</maml:para>
-        </maml:description>
       </command:inputType>
     </command:inputTypes>
 
@@ -268,18 +259,19 @@
         <maml:introduction>
           <maml:para>Copies a file without renaming</maml:para>
         </maml:introduction>
-        <dev:code>PS C:\>Copy-PassiveFile -Source '\\server\share name\TMurgent_TestDirectory\TestDirectory.exe' -Destination "$($env:ProgramFiles)\TMurgent"</dev:code>
+        
+        <command:code/>
+        <command:code>
+PS>
+PS> Copy-PassiveFile -Source '\\server\share name\TMurgent_TestDirectory\TestDirectory.exe' -Destination "$($env:ProgramFiles)\TMurgent"
+PS>
+        </command:code>
         <dev:remarks>
           <maml:para>If the destination folder does not exist, it will be created.</maml:para>
           <maml:para>A copy of the file TestDirectory.exe will be placed in the destination folder.</maml:para>
           <maml:para>If a file of that name already exists at the destination, it will be overwritten.</maml:para>
           <maml:para/>
         </dev:remarks>
-        <command:commandLines>
-          <command:commandLine>
-            <command:commandText/>
-          </command:commandLine>
-        </command:commandLines>
       </command:example>
 
       <command:example>
@@ -287,7 +279,13 @@
         <maml:introduction>
           <maml:para>Copies a file, renaming the copied file along the way.</maml:para>
         </maml:introduction>
-        <dev:code>PS C:\>Copy-PassiveFile -Source '\\server\share name\TMurgent_TestDirectory\TestDirectory.exe' -Destination "$($env:ProgramFiles)\TMurgent" -NewName "FunkyMonkey.exe</dev:code>
+        
+        <command:code/>
+        <command:code>
+PS>
+PS> Copy-PassiveFile -Source '\\server\share name\TMurgent_TestDirectory\TestDirectory.exe' -Destination "$($env:ProgramFiles)\TMurgent" -NewName "FunkyMonkey.exe"
+PS>
+        </command:code>
         <dev:remarks>
           <maml:para>If the destination folder does not exist, it will be created.</maml:para>
           <maml:para>A copy of the file TestDirectory.exe will be placed in the destination folder using the new name.</maml:para>
@@ -295,13 +293,7 @@
           <maml:para>If a file of the old name already exists at the destination, it will not be touched.</maml:para>
           <maml:para/>
         </dev:remarks>
-        <command:commandLines>
-          <command:commandLine>
-            <command:commandText/>
-          </command:commandLine>
-        </command:commandLines>
       </command:example>
-
     </command:examples>
   </command:command>
 
@@ -313,7 +305,7 @@
         <maml:para>Copies a folder (and its contents) to the given location.</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2026, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>Copy</command:verb>
       <command:noun>PassiveFolder</command:noun>
@@ -391,15 +383,12 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name> </maml:name>
+          <maml:name>None</maml:name>
           <maml:uri> </maml:uri>
           <maml:description>
-            <maml:para/>
+            <maml:para>You cannot pipe objects to Copy-PassiveFolder.</maml:para>
           </maml:description>
         </dev:type>
-        <maml:description>
-          <maml:para>You cannot pipe objects to Copy-PassiveFolder.</maml:para>
-        </maml:description>
       </command:inputType>
     </command:inputTypes>
 
@@ -432,20 +421,20 @@
         <maml:introduction>
           <maml:para>Copies a folder</maml:para>
         </maml:introduction>
-        <dev:code>PS C:\>Copy-PassiveFolder -Source '\\server\share name\TMurgent_TestDirectory' -Destination "$($env:ProgramFiles)\TMurgent"</dev:code>
+        
+        <command:code/>
+        <command:code>
+PS>
+PS> Copy-PassiveFolder -Source '\\server\share name\TMurgent_TestDirectory' -Destination "$($env:ProgramFiles)\TMurgent"
+PS>
+        </command:code>
         <dev:remarks>
           <maml:para>If the destination folder does not exist, it will be created.</maml:para>
           <maml:para>A copy of the folder TMurgent_TestDirectory.exe will be placed in the destination folder; such as C:\Program Files\TMurgent\TMurgent_TestDirectory</maml:para>
           <maml:para>If a folder of that name TMurgent_TestDirectory already exists at the destination, it will be overwritten using a merge technique.</maml:para>
           <maml:para/>
         </dev:remarks>
-        <command:commandLines>
-          <command:commandLine>
-            <command:commandText/>
-          </command:commandLine>
-        </command:commandLines>
       </command:example>
-
     </command:examples>
   </command:command>
 
@@ -459,7 +448,7 @@
         <maml:para>Sets each listed windows service in the Disabled state.</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2026, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>Disable</command:verb>
       <command:noun>PassiveWindowsServices</command:noun>
@@ -501,15 +490,12 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name> </maml:name>
+          <maml:name>None</maml:name>
           <maml:uri> </maml:uri>
           <maml:description>
-            <maml:para/>
+            <maml:para>You cannot pipe objects to Disable-PassiveWindowsServices.</maml:para>
           </maml:description>
         </dev:type>
-        <maml:description>
-          <maml:para>You cannot pipe objects to Disable-PassiveWindowsServices.</maml:para>
-        </maml:description>
       </command:inputType>
     </command:inputTypes>
 
@@ -542,17 +528,18 @@
         <maml:introduction>
           <maml:para>Disables a service</maml:para>
         </maml:introduction>
-        <dev:code>PS C:\>Disable-PassiveWindowsServices -Names 'CrummyVendorUpdateService'</dev:code>
+        
+        <command:code/>
+        <command:code>
+PS>
+PS> Disable-PassiveWindowsServices -Names 'CrummyVendorUpdaterService'
+PS>
+        </command:code>
         <dev:remarks>
           <maml:para>Use the 'Service Name' and not the 'Display Name' when naming a service.</maml:para>
           <maml:para>If the service is currently running, this cmdlet will not automatically stop it, but it will be set to disabled.</maml:para>
           <maml:para/>
         </dev:remarks>
-        <command:commandLines>
-          <command:commandLine>
-            <command:commandText/>
-          </command:commandLine>
-        </command:commandLines>
       </command:example>
 
 
@@ -561,21 +548,117 @@
         <maml:introduction>
           <maml:para>Disables a list of services</maml:para>
         </maml:introduction>
-        <dev:code>PS C:\>Disable-PassiveWindowsServices -Names "'CrummyVendorUpdateService', 'AudioEnpointBuilder'"</dev:code>
+        
+        <command:code/>
+        <command:code>
+PS>
+PS> Disable-PassiveWindowsServices -Names "'CrummyVendorUpdaterService', 'AudioEndpointBuilder'"
+PS>
+        </command:code>
         <dev:remarks>
           <maml:para>Use the 'Service Name' and not the 'Display Name' when naming a service.</maml:para>
           <maml:para>If the service is currently running, this cmdlet will not automatically stop it, but it will be set to disabled.</maml:para>
           <maml:para/>
         </dev:remarks>
-        <command:commandLines>
-          <command:commandLine>
-            <command:commandText/>
-          </command:commandLine>
-        </command:commandLines>
+      </command:example>
+    </command:examples>
+  </command:command>
+
+  <!-- Get commands -->
+  <command:command xmlns:MSHelp="http://msdn.microsoft.com/mshelp" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:maml="http://schemas.microsoft.com/maml/2004/10">
+
+    <command:details>
+      <command:name>Get-PassiveFirewallRules</command:name>
+      <maml:description>
+        <maml:para>Retrieve a structure that contains the current registry entries for the Windows Firewall.</maml:para>
+      </maml:description>
+      <maml:copyright>
+        <maml:para>Copyright 2026, TMurgent Technologies, LLP</maml:para>
+      </maml:copyright>
+      <command:verb>Get</command:verb>
+      <command:noun>PassiveFirewallRules</command:noun>
+      <dev:version/>
+    </command:details>
+
+    <maml:description>
+      <maml:para>Get-PassivePassiveFirewallRules will return a structure consisting of all the Defaults and Parameters of the Windows Firewall rules from the registry.</maml:para>
+      <maml:para>The typical use is to run this command both before and after an application installation, and to pass the snapshots to the Redo-PassiveNewFirewallRules cmdlet.</maml:para>
+      <maml:para>The Microsoft MSIX Packaging tool will not capture firewall rules added by the application installer.  It is a built in filter that we cannot configure.  By taking before and after snapshots, you can then ask the Redo cmdlet to re-write the registry entries so that they will be captured.</maml:para>
+    </maml:description>
+    
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Get-PassiveFirewallRules</maml:name>
+      </command:syntaxItem>
+    </command:syntax>
+
+    <command:parameters/>
+
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+          <maml:uri> </maml:uri>
+        </dev:type><maml:description>
+          <maml:para>You cannot pipe objects to Get-PassiveFirewallRules.</maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>PassiveInstall.Structures.FirewallRules</maml:name>
+          <maml:uri> </maml:uri>
+        </dev:type>
+        <maml:description>
+          <maml:para>The rules from the registry.</maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+
+    <command:terminatingErrors>
+      <maml:description>
+        <maml:para>No errors should occur on a healthy system.</maml:para>
+      </maml:description>
+    </command:terminatingErrors>
+    <command:nonTerminatingErrors/>
+
+    <command:examples>
+
+      <command:example>
+        <maml:title>-------------- EXAMPLE 1 --------------</maml:title>
+        <maml:introduction>
+          <maml:para>This is a typical usage scenario:</maml:para>
+        </maml:introduction>
+        
+        <command:code/>
+        <command:code>
+PS>
+PS> $BeforeSnapshot = Get-PassiveFirewallRules
+PS> msiexec /q vendorInstaller.msi
+PS> $AfterSnapshot = Get-PassiveFirewallRules
+PS> $Changes = Redo-PassiveNewFirewallRules $BeforeSnapshot $AfterSnapshot
+PS> $Changes.Show()
+PS>
+        </command:code>    
+
+        <dev:remarks>
+          <maml:para></maml:para>
+          <maml:para>The scenario is an application installation for which we want any firewall rules added by the vendor installer to be properly captured by the MMPT.</maml:para>
+          <maml:para>    1) Before the application installation a snapshot is saved.</maml:para>
+          <maml:para>    2) The application installer is run.</maml:para>
+          <maml:para>    3) After the application installation, a second snapshort is saved.</maml:para>
+          <maml:para>    4) Then the Redo cmdlet is run to re-apply any new firewall rules added by the installer.</maml:para>
+          <maml:para>    5) For giggles, the rules that were re-applied are displayed using the Show() method on the output object.</maml:para>
+          <maml:para></maml:para>
+          <maml:para>Only rules that are new in the after snapshot will be updated.</maml:para>
+        </dev:remarks>
       </command:example>
 
     </command:examples>
   </command:command>
+
 
 
   <!-- Install commands -->
@@ -587,7 +670,7 @@
         <maml:para>Performs the appropriate installation activity on the file provided.</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2026, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>Install</command:verb>
       <command:noun>PassiveInstallFile</command:noun>
@@ -719,15 +802,12 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name> </maml:name>
+          <maml:name>None</maml:name>
           <maml:uri> </maml:uri>
           <maml:description>
-            <maml:para/>
+            <maml:para>You cannot pipe objects to Install-PassiveInstallFile.</maml:para>
           </maml:description>
         </dev:type>
-        <maml:description>
-          <maml:para>You cannot pipe objects to Install-PassiveInstallFile.</maml:para>
-        </maml:description>
       </command:inputType>
     </command:inputTypes>
 
@@ -760,16 +840,18 @@
         <maml:introduction>
           <maml:para>Install a MSI</maml:para>
         </maml:introduction>
+        
+        <command:code/>
+        <command:code>
+PS>
+PS> Install-PassiveInstallFile -Installer 'C:\InstallSource\Vendor.msi' -Arguments '/qn SOMEOPTION=7'
+PS>
+        </command:code>
         <dev:code>PS C:\>Install-PassiveInstallFile -Installer 'C:\InstallSource\Vendor.msi' -Arguments '/qn SOMEOPTION=7' </dev:code>
         <dev:remarks>
           <maml:para>msiexec.exe will be used to install the file.</maml:para>
           <maml:para/>
         </dev:remarks>
-        <command:commandLines>
-          <command:commandLine>
-            <command:commandText/>
-          </command:commandLine>
-        </command:commandLines>
       </command:example>
 
 
@@ -778,16 +860,17 @@
         <maml:introduction>
           <maml:para>Patch an install with a MSP file</maml:para>
         </maml:introduction>
-        <dev:code>PS C:\>Install-PassiveInstallFile -Installer 'C:\InstallSource\Vendor.msp' -Arguments '/qn'</dev:code>
+        
+        <command:code/>
+        <command:code>
+PS>
+PS> Install-PassiveInstallFile -Installer 'C:\InstallSource\Vendor.msp' -Arguments '/qn'
+PS>
+        </command:code>
         <dev:remarks>
           <maml:para>msiexec.exe will be used to install the patch.</maml:para>
           <maml:para/>
         </dev:remarks>
-        <command:commandLines>
-          <command:commandLine>
-            <command:commandText/>
-          </command:commandLine>
-        </command:commandLines>
       </command:example>
 
 
@@ -797,16 +880,17 @@
         <maml:introduction>
           <maml:para>Install using an exe based installer and fully silent.</maml:para>
         </maml:introduction>
-        <dev:code>PS C:\>Install-PassiveInstallFile -Installer 'C:\InstallSource\Vendor.exe' -Arguments '/silent' -DoSilent</dev:code>
+        
+        <command:code/>
+        <command:code>
+PS>
+PS> Install-PassiveInstallFile -Installer 'C:\InstallSource\Vendor.exe' -Arguments '/silent' -DoSilent
+PS>
+        </command:code>
         <dev:remarks>
           <maml:para>The exe will be directly executed. Arguments for a silent or passive install are vendor specific.</maml:para>
           <maml:para/>
         </dev:remarks>
-        <command:commandLines>
-          <command:commandLine>
-            <command:commandText/>
-          </command:commandLine>
-        </command:commandLines>
       </command:example>
 
 
@@ -816,17 +900,18 @@
         <maml:introduction>
           <maml:para>Install with a ZIP file</maml:para>
         </maml:introduction>
-        <dev:code>PS C:\>Install-PassiveInstallFile -Installer 'C:\InstallSource\Vendor.zip' -Destination 'C:\Program Files\Vendor'</dev:code>
+        
+        <command:code/>
+        <command:code>
+PS>
+PS> Install-PassiveInstallFile -Installer 'C:\InstallSource\Vendor.zip' -Destination 'C:\Program Files\Vendor'
+PS>
+        </command:code>
         <dev:remarks>
           <maml:para>The windows internal zip utility will be used to extract the content of the zip file and place into the destination folder.</maml:para>
           <maml:para>In this case, no new process or window is created, so the DoSilent option is ignored.</maml:para>
           <maml:para/>
         </dev:remarks>
-        <command:commandLines>
-          <command:commandLine>
-            <command:commandText/>
-          </command:commandLine>
-        </command:commandLines>
       </command:example>
 
 
@@ -836,16 +921,17 @@
         <maml:introduction>
           <maml:para>Install with a CMD or BAT file</maml:para>
         </maml:introduction>
-        <dev:code>PS C:\>Install-PassiveInstallFile -Installer 'C:\InstallSource\Vendor.cmd' -Arguments 'SomeOption="this"'</dev:code>
+        
+        <command:code/>
+        <command:code>
+PS>
+PS> Install-PassiveInstallFile -Installer 'C:\InstallSource\Vendor.cmd' -Arguments 'SomeOption="this"'
+PS>
+        </command:code>
         <dev:remarks>
           <maml:para>The windows cmd.exe command will be used with the /c option to run the cmd or bat file.  The Arguments parameters will be appended to the command line.</maml:para>
           <maml:para/>
         </dev:remarks>
-        <command:commandLines>
-          <command:commandLine>
-            <command:commandText/>
-          </command:commandLine>
-        </command:commandLines>
       </command:example>
 
 
@@ -856,17 +942,18 @@
         <maml:introduction>
           <maml:para>Install with a REG file.</maml:para>
         </maml:introduction>
-        <dev:code>PS C:\>Install-PassiveInstallFile -Installer 'C:\InstallSource\Custom.Reg' </dev:code>
+        
+        <command:code/>
+        <command:code>
+PS>
+PS> Install-PassiveInstallFile -Installer 'C:\InstallSource\Custom.Reg'
+PS>
+        </command:code>
         <dev:remarks>
           <maml:para>The windows reg.exe command will be used to import the Reg file into the Windows Registry.  The Arguments parameters will be ignored, if present.</maml:para>
           <maml:para>The force and silent options are automatically used to prevent popups.</maml:para>
           <maml:para/>
         </dev:remarks>
-        <command:commandLines>
-          <command:commandLine>
-            <command:commandText/>
-          </command:commandLine>
-        </command:commandLines>
       </command:example>
 
     </command:examples>
@@ -882,7 +969,7 @@
         <maml:para>Moves the source folder under the destination.</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2026, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>Move</command:verb>
       <command:noun>PassiveFolder</command:noun>
@@ -943,15 +1030,12 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name> </maml:name>
+          <maml:name>None</maml:name>
           <maml:uri> </maml:uri>
           <maml:description>
-            <maml:para/>
+            <maml:para>You cannot pipe objects to Move-PassiveFolder.</maml:para>
           </maml:description>
         </dev:type>
-        <maml:description>
-          <maml:para>You cannot pipe objects to Move-PassiveFolder.</maml:para>
-        </maml:description>
       </command:inputType>
     </command:inputTypes>
 
@@ -984,16 +1068,17 @@
         <maml:introduction>
           <maml:para>Move a folder</maml:para>
         </maml:introduction>
-        <dev:code>PS C:\>Move-PassiveFolder -Source 'C:\Downloads\Mytempfolder\PlugIns' -Destination '"C:\Program Files (x86)\Vendor\Product"'</dev:code>
+        
+        <command:code/>
+        <command:code>
+PS>
+PS> Move-PassiveFolder -Source 'C:\Downloads\Mytempfolder\PlugIns' -Destination '"C:\Program Files (x86)\Vendor\Product"'
+PS>
+        </command:code>
         <dev:remarks>
           <maml:para>Moves the requested folder.</maml:para>
           <maml:para/>
         </dev:remarks>
-        <command:commandLines>
-          <command:commandLine>
-            <command:commandText/>
-          </command:commandLine>
-        </command:commandLines>
       </command:example>
     </command:examples>
   </command:command>
@@ -1006,7 +1091,7 @@
         <maml:para>Moves the source Key under the destination Key.</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2026, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>Move</command:verb>
       <command:noun>PassiveRegistryKey</command:noun>
@@ -1107,15 +1192,12 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name> </maml:name>
+          <maml:name>None</maml:name>
           <maml:uri> </maml:uri>
           <maml:description>
-            <maml:para/>
+            <maml:para>You cannot pipe objects to Move-PassiveRegistryKey.</maml:para>
           </maml:description>
         </dev:type>
-        <maml:description>
-          <maml:para>You cannot pipe objects to Move-PassiveRegistryKey.</maml:para>
-        </maml:description>
       </command:inputType>
     </command:inputTypes>
 
@@ -1148,16 +1230,17 @@
         <maml:introduction>
           <maml:para>Move a file type association from the local machine to current user hive</maml:para>
         </maml:introduction>
-        <dev:code>PS C:\>Move-PassiveRegistryKey -FromHive 'HKLM' -ParentKey 'Software\Classes\.xyz' -RelativeKey 'Software\Classes\.xyz' -ToHive 'HKCU' </dev:code>
+        
+        <command:code/>
+        <command:code>
+PS>
+PS> Move-PassiveRegistryKey -FromHive 'HKLM' -ParentKey 'Software\Classes\.xyz' -RelativeKey 'Software\Classes\.xyz' -ToHive 'HKCU'
+PS>
+        </command:code>
         <dev:remarks>
           <maml:para>Moves the requested key.</maml:para>
           <maml:para/>
         </dev:remarks>
-        <command:commandLines>
-          <command:commandLine>
-            <command:commandText/>
-          </command:commandLine>
-        </command:commandLines>
       </command:example>
     </command:examples>
   </command:command>
@@ -1172,7 +1255,7 @@
         <maml:para>Creates/Updates an AppPath entry for Windows Start Menu search.</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2026, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>New</command:verb>
       <command:noun>PassiveAppPathSearch</command:noun>
@@ -1233,15 +1316,12 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name> </maml:name>
+          <maml:name>None</maml:name>
           <maml:uri> </maml:uri>
           <maml:description>
-            <maml:para/>
+            <maml:para>You cannot pipe objects to New-PassiveAppPathSearch.</maml:para>
           </maml:description>
         </dev:type>
-        <maml:description>
-          <maml:para>You cannot pipe objects to New-PassiveAppPathSearch.</maml:para>
-        </maml:description>
       </command:inputType>
     </command:inputTypes>
 
@@ -1274,16 +1354,17 @@
         <maml:introduction>
           <maml:para>Creates a search entry for the application in the start menu.</maml:para>
         </maml:introduction>
-        <dev:code>PS C:\>New-PassiveAppPathSearch -Target "$($env:ProgramFiles)\Vendor\Product\file.exe" </dev:code>
+        
+        <command:code/>
+        <command:code>
+PS>
+PS> New-PassiveAppPathSearch -Target "$($env:ProgramFiles)\Vendor\Product\file.exe"
+PS>
+        </command:code>
         <dev:remarks>
           <maml:para>Creates or updates the requested search entry.</maml:para>
           <maml:para/>
         </dev:remarks>
-        <command:commandLines>
-          <command:commandLine>
-            <command:commandText/>
-          </command:commandLine>
-        </command:commandLines>
       </command:example>
     </command:examples>
   </command:command>
@@ -1297,7 +1378,7 @@
         <maml:para>Creates a shortcut to the current user's desktop.</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2026, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>New</command:verb>
       <command:noun>PassiveDesktopShortcut</command:noun>
@@ -1498,15 +1579,12 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name> </maml:name>
+          <maml:name>None</maml:name>
           <maml:uri> </maml:uri>
           <maml:description>
-            <maml:para/>
+            <maml:para>You cannot pipe objects to New-PassiveDesktopShortcut.</maml:para>
           </maml:description>
         </dev:type>
-        <maml:description>
-          <maml:para>You cannot pipe objects to New-PassiveDesktopShortcut.</maml:para>
-        </maml:description>
       </command:inputType>
     </command:inputTypes>
 
@@ -1539,16 +1617,17 @@
         <maml:introduction>
           <maml:para>Creates a shortcut on the desktop.</maml:para>
         </maml:introduction>
-        <dev:code>PS C:\>New-PassiveDesktopShortcut -Target "$($env:ProgramFiles)\Vendor\Product\file.exe" -Shortcut "File" -Icon "$($env:ProgramFiles)\Vendor\Product\file.exe,2" </dev:code>
+        
+        <command:code/>
+        <command:code>
+PS>
+PS> New-PassiveDesktopShortcut -Target "$($env:ProgramFiles)\Vendor\Product\file.exe" -Shortcut "File" -Icon "$($env:ProgramFiles)\Vendor\Product\file.exe,2"
+PS>
+        </command:code>
         <dev:remarks>
-          <maml:para>Creates the requested shortcut.</maml:para>
+          <maml:para>Creates the requested shortcut on the current user's desktop.</maml:para>
           <maml:para/>
         </dev:remarks>
-        <command:commandLines>
-          <command:commandLine>
-            <command:commandText/>
-          </command:commandLine>
-        </command:commandLines>
       </command:example>
     </command:examples>
   </command:command>
@@ -1561,7 +1640,7 @@
         <maml:para>Creates a new environment variable or changes the value to an existing one..</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2026, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>New</command:verb>
       <command:noun>PassiveEnvironmentVariable</command:noun>
@@ -1623,15 +1702,12 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name> </maml:name>
+          <maml:name>None</maml:name>
           <maml:uri> </maml:uri>
           <maml:description>
-            <maml:para/>
+            <maml:para>You cannot pipe objects to New-PassiveEnvironmentVariable.</maml:para>
           </maml:description>
         </dev:type>
-        <maml:description>
-          <maml:para>You cannot pipe objects to New-PassiveEnvironmentVariable.</maml:para>
-        </maml:description>
       </command:inputType>
     </command:inputTypes>
 
@@ -1664,16 +1740,17 @@
         <maml:introduction>
           <maml:para>Create a new variable</maml:para>
         </maml:introduction>
-        <dev:code>PS C:\>New-PassiveEnvironmentVariable -Name 'Pokino' -Value '9x9' </dev:code>
+        
+        <command:code/>
+        <command:code>
+PS>
+PS> New-PassiveEnvironmentVariable -Name 'Pokino' -Value '9x9'
+PS>
+        </command:code>
         <dev:remarks>
           <maml:para>Creates or Updates the requested variable.</maml:para>
           <maml:para/>
         </dev:remarks>
-        <command:commandLines>
-          <command:commandLine>
-            <command:commandText/>
-          </command:commandLine>
-        </command:commandLines>
       </command:example>
 
       <command:example>
@@ -1681,16 +1758,17 @@
         <maml:introduction>
           <maml:para>Updating the Path variable</maml:para>
         </maml:introduction>
-        <dev:code>PS C:\>New-PassiveEnvironmentVariable -Name 'PATH' -Value "$($env:PATH);C:\otherfolder"</dev:code>
+        
+        <command:code/>
+        <command:code>
+PS>
+PS> New-PassiveEnvironmentVariable -Name 'PATH' -Value "$($env:PATH);C:\otherfolder"
+PS>
+        </command:code>
         <dev:remarks>
           <maml:para>Appends a new folder to the end of the current path environment variable.</maml:para>
           <maml:para/>
         </dev:remarks>
-        <command:commandLines>
-          <command:commandLine>
-            <command:commandText/>
-          </command:commandLine>
-        </command:commandLines>
       </command:example>
 
     </command:examples>
@@ -1704,7 +1782,7 @@
         <maml:para>Creates a folder if it is not already present on the system.</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2026, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>New</command:verb>
       <command:noun>PassiveFolderIfNotPresent</command:noun>
@@ -1746,15 +1824,12 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name> </maml:name>
+          <maml:name>None</maml:name>
           <maml:uri> </maml:uri>
           <maml:description>
-            <maml:para/>
+            <maml:para>You cannot pipe objects to New-PassiveFolderIfNotPresent.</maml:para>
           </maml:description>
         </dev:type>
-        <maml:description>
-          <maml:para>You cannot pipe objects to New-PassiveFolderIfNotPresent.</maml:para>
-        </maml:description>
       </command:inputType>
     </command:inputTypes>
 
@@ -1787,18 +1862,18 @@
         <maml:introduction>
           <maml:para>Copies a folder</maml:para>
         </maml:introduction>
-        <dev:code>PS C:\>New-PassiveFolderIfNotPresent -Folder "$($env:ProgramFiles)\TMurgent"</dev:code>
+        
+        <command:code/>
+        <command:code>
+PS>
+PS> New-PassiveFolderIfNotPresent -Folder "$($env:ProgramFiles)\TMurgent"
+PS>
+        </command:code>
         <dev:remarks>
           <maml:para>If the folder does not exist, it will be created.</maml:para>
           <maml:para/>
         </dev:remarks>
-        <command:commandLines>
-          <command:commandLine>
-            <command:commandText/>
-          </command:commandLine>
-        </command:commandLines>
       </command:example>
-
     </command:examples>
   </command:command>
 
@@ -1810,7 +1885,7 @@
         <maml:para>Creates a registry key if it is not already present on the system.</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2026, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>New</command:verb>
       <command:noun>PassiveRegistryKeyIfNotPresent</command:noun>
@@ -1872,15 +1947,12 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name> </maml:name>
+          <maml:name>None</maml:name>
           <maml:uri> </maml:uri>
           <maml:description>
-            <maml:para/>
+            <maml:para>You cannot pipe objects to New-PassiveRegistryKeyIfNotPresent.</maml:para>
           </maml:description>
         </dev:type>
-        <maml:description>
-          <maml:para>You cannot pipe objects to New-PassiveRegistryKeyIfNotPresent.</maml:para>
-        </maml:description>
       </command:inputType>
     </command:inputTypes>
 
@@ -1913,18 +1985,18 @@
         <maml:introduction>
           <maml:para>Copies a folder</maml:para>
         </maml:introduction>
-        <dev:code>PS C:\>New-PassiveRegistryKeyIfNotPresent -HIve 'HKLM' -Key "Software\TMurgent\IWillCrash"</dev:code>
+        
+        <command:code/>
+        <command:code>
+PS>
+PS> New-PassiveRegistryKeyIfNotPresent -HIve 'HKLM' -Key "Software\TMurgent\IWillCrash"
+PS>
+        </command:code>
         <dev:remarks>
           <maml:para>If the key does not exist, it will be created.</maml:para>
           <maml:para/>
         </dev:remarks>
-        <command:commandLines>
-          <command:commandLine>
-            <command:commandText/>
-          </command:commandLine>
-        </command:commandLines>
       </command:example>
-
     </command:examples>
   </command:command>
 
@@ -1936,7 +2008,7 @@
         <maml:para>Creates a shortcut to the Start Menu.</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2026, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>New</command:verb>
       <command:noun>PassiveStartMenuShortcut</command:noun>
@@ -2175,15 +2247,12 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name> </maml:name>
+          <maml:name>None</maml:name>
           <maml:uri> </maml:uri>
           <maml:description>
-            <maml:para/>
+            <maml:para>You cannot pipe objects to New-PassiveStartMenuShortcut.</maml:para>
           </maml:description>
         </dev:type>
-        <maml:description>
-          <maml:para>You cannot pipe objects to New-PassiveStartMenuShortcut.</maml:para>
-        </maml:description>
       </command:inputType>
     </command:inputTypes>
 
@@ -2216,16 +2285,17 @@
         <maml:introduction>
           <maml:para>Creates a shortcut in the all user's menu.</maml:para>
         </maml:introduction>
-        <dev:code>PS C:\>New-PassiveStartMenuShortcut -Target "$($env:ProgramFiles)\Vendor\Product\file.exe" -Shortcut "Vendor\App" -Icon "$($env:ProgramFiles)\Vendor\Product\file.exe,2" </dev:code>
+        
+        <command:code/>
+        <command:code>
+PS>
+PS> New-PassiveStartMenuShortcut -Target "$($env:ProgramFiles)\Vendor\Product\file.exe" -Shortcut "Vendor\App" -Icon "$($env:ProgramFiles)\Vendor\Product\file.exe,2"
+PS>
+        </command:code>
         <dev:remarks>
-          <maml:para>Creates the requested shortcut.</maml:para>
+          <maml:para>Creates the requested shortcut to the current user start menu.</maml:para>
           <maml:para/>
         </dev:remarks>
-        <command:commandLines>
-          <command:commandLine>
-            <command:commandText/>
-          </command:commandLine>
-        </command:commandLines>
       </command:example>
 
       <command:example>
@@ -2233,16 +2303,17 @@
         <maml:introduction>
           <maml:para>Creates a shortcut in the Current User's Start menu.</maml:para>
         </maml:introduction>
-        <dev:code>PS C:\>New-PassiveStartMenuShortcut -Target "$($env:ProgramFiles)\Vendor\Product\file.exe" -Shortcut "App1" -ShortcutFolder "Vendor1" -CurrentUser -Icon "$($env:ProgramFiles)\Vendor\Product\file.exe,2" </dev:code>
+        
+        <command:code/>
+        <command:code>
+PS>
+PS> New-PassiveStartMenuShortcut -Target "$($env:ProgramFiles)\Vendor\Product\file.exe" -Shortcut "App1" -ShortcutFolder "Vendor1" -CurrentUser -Icon "$($env:ProgramFiles)\Vendor\Product\file.exe,2"
+PS>
+        </command:code>
         <dev:remarks>
           <maml:para>Creates the requested shortcut.</maml:para>
           <maml:para/>
         </dev:remarks>
-        <command:commandLines>
-          <command:commandLine>
-            <command:commandText/>
-          </command:commandLine>
-        </command:commandLines>
       </command:example>
 
       <command:example>
@@ -2250,16 +2321,17 @@
         <maml:introduction>
           <maml:para>Creates a shortcut in the Specified location.</maml:para>
         </maml:introduction>
-        <dev:code>PS C:\>New-PassiveStartMenuShortcut -Target "$($env:ProgramFiles)\Vendor\Product\file.exe" -Shortcut "App2.lnk" -ShortcutFolder "$($env:ALLUSERSPROFILE)\Microsoft\Windows\Start Menu\Programs\Vendor2" -Icon "$($env:ProgramFiles)\Vendor\Product\file.exe,2" </dev:code>
+        
+        <command:code/>
+        <command:code>
+PS>
+PS> New-PassiveStartMenuShortcut -Target "$($env:ProgramFiles)\Vendor\Product\file.exe" -Shortcut "App2.lnk" -ShortcutFolder "$($env:ALLUSERSPROFILE)\Microsoft\Windows\Start Menu\Programs\Vendor2" -Icon "$($env:ProgramFiles)\Vendor\Product\file.exe,2"
+PS>
+        </command:code>
         <dev:remarks>
           <maml:para>Creates the requested shortcut.</maml:para>
           <maml:para/>
         </dev:remarks>
-        <command:commandLines>
-          <command:commandLine>
-            <command:commandText/>
-          </command:commandLine>
-        </command:commandLines>
       </command:example>
     </command:examples>
   </command:command>
@@ -2275,7 +2347,7 @@
         <maml:para>Flush all of the NGEN queues on the system.</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2026, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>Optimize</command:verb>
       <command:noun>PassiveNgenQueues</command:noun>
@@ -2336,15 +2408,12 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name> </maml:name>
+          <maml:name>None</maml:name>
           <maml:uri> </maml:uri>
           <maml:description>
-            <maml:para/>
+            <maml:para>You cannot pipe objects to Optimize-PassiveNgenQueues.</maml:para>
           </maml:description>
         </dev:type>
-        <maml:description>
-          <maml:para>You cannot pipe objects to Optimize-PassiveNgenQueues.</maml:para>
-        </maml:description>
       </command:inputType>
     </command:inputTypes>
 
@@ -2377,18 +2446,18 @@
         <maml:introduction>
           <maml:para>Ask NGEN to complete any DotNet optimization compilations. This is preferred as the last step of an installation/capture sequence.</maml:para>
         </maml:introduction>
-        <dev:code>PS C:\>Optimize-PassiveNgenQueues  </dev:code>
+        
+        <command:code/>
+        <command:code>
+PS>
+PS> Optimize-PassiveNgenQueues
+PS>
+        </command:code>
         <dev:remarks>
           <maml:para>Causes NGEN to flush all queued up compilations. Will wait for this to complete.</maml:para>
           <maml:para/>
         </dev:remarks>
-        <command:commandLines>
-          <command:commandLine>
-            <command:commandText/>
-          </command:commandLine>
-        </command:commandLines>
       </command:example>
-
     </command:examples>
   </command:command>
 
@@ -2400,7 +2469,7 @@
         <maml:para>Performs a native inteface compilation of the named file.</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2026, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>Optimize</command:verb>
       <command:noun>PassiveNgenCompileFile</command:noun>
@@ -2515,15 +2584,12 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name> </maml:name>
+          <maml:name>None</maml:name>
           <maml:uri> </maml:uri>
           <maml:description>
-            <maml:para/>
+            <maml:para>You cannot pipe objects to Optimize-PassiveNgenCompileFile.</maml:para>
           </maml:description>
         </dev:type>
-        <maml:description>
-          <maml:para>You cannot pipe objects to Optimize-PassiveNgenCompileFile.</maml:para>
-        </maml:description>
       </command:inputType>
     </command:inputTypes>
 
@@ -2556,16 +2622,162 @@
         <maml:introduction>
           <maml:para>Ask NGEN to compile the given file immediately.</maml:para>
         </maml:introduction>
-        <dev:code>PS C:\>Optimize-PassiveNgenCompileFile  -Is64bit 1 -VersionString "v4.0.30319" -FileName "C:\Program Files\Vendor\Folder\File.net.exe"  </dev:code>
+        
+        <command:code/>
+        <command:code>
+PS>
+PS> Optimize-PassiveNgenCompileFile  -Is64bit 1 -VersionString "v4.0.30319" -FileName "C:\Program Files\Vendor\Folder\File.net.exe"
+PS>
+        </command:code>
         <dev:remarks>
           <maml:para>Causes NGEN to compile the file. Will wait for this to complete.</maml:para>
           <maml:para/>
         </dev:remarks>
-        <command:commandLines>
-          <command:commandLine>
-            <command:commandText/>
-          </command:commandLine>
-        </command:commandLines>
+      </command:example>
+    </command:examples>
+  </command:command>
+
+
+  <!-- Redo commands -->
+  <command:command xmlns:MSHelp="http://msdn.microsoft.com/mshelp" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:maml="http://schemas.microsoft.com/maml/2004/10">
+
+    <command:details>
+      <command:name>Redo-PassiveNewFirewallRules</command:name>
+      <maml:description>
+        <maml:para>Re-apply firewall rules that are new when comparing a before and after pair of Windows Firewall rules.</maml:para>
+      </maml:description>
+      <maml:copyright>
+        <maml:para>Copyright 2026, TMurgent Technologies, LLP</maml:para>
+      </maml:copyright>
+      <command:verb>Redo</command:verb>
+      <command:noun>PassiveNewFirewallRules</command:noun>
+      <dev:version/>
+    </command:details>
+
+    <maml:description>
+      <maml:para>Redo-PassiveNewFirewallRules will compare the two input structures previously returned from Get-PassiveFirewallRules and re-apply any rules present in the second list.</maml:para>
+      <maml:para>The typical use is to run that command both before and after an application installation, and to pass the snapshots to the Redo-PassiveNewFirewallRules cmdlet.</maml:para>
+      <maml:para>The Microsoft MSIX Packaging tool will not capture firewall rules added by the application installer.  It is a built in filter that we cannot configure.  By taking before and after snapshots, you can then ask the Redo cmdlet to re-write the registry entries so that they will be captured.</maml:para>
+      <maml:para>NOTE: This cmdlet writes to HKLM and requires an elevated process.</maml:para>
+      <maml:para>-WhatIf is not supported.</maml:para>
+    </maml:description>
+
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Redo-PassiveNewFirewallRules</maml:name>
+        <command:parameter aliases="none" position="0" pipelineInput="false" globbing="false" required="true">
+          <maml:name>InitialList</maml:name>
+          <maml:description>
+            <maml:para>PassiveInstall.Structures.FirewallRules structure from the pre-installation snapshot.</maml:para>
+          </maml:description>
+        </command:parameter>
+        <command:parameter aliases="none" position="1" pipelineInput="false" globbing="false" required="true">
+          <maml:name>NewList</maml:name>
+          <maml:description>
+            <maml:para>PassiveInstall.Structures.FirewallRules structure from the post-installation snapshot.</maml:para>
+          </maml:description>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+
+
+    <command:parameters>
+      <command:parameter aliases="none" position="0" pipelineInput="false" globbing="false" required="true">
+        <maml:name>InitialList</maml:name>
+        <maml:description>
+          <maml:para>PassiveInstall.Structures.FirewallRules structure from the pre-installation snapshot.</maml:para>
+          <maml:para>This is a list of the firewall rules, typically taken by Get-PassiceFirewallRules before the application installation.</maml:para>
+        </maml:description>
+        <command:parameterValue variableLength="true" required="true">PassiveInstall.Structures.FirewallRules</command:parameterValue>
+        <dev:type>
+          <maml:name>PassiveInstall.Structures.FirewallRules</maml:name>
+          <maml:uri/>
+        </dev:type>
+        <dev:defaultValue>none</dev:defaultValue>
+      </command:parameter>
+      <command:parameter aliases="none" position="1" pipelineInput="false" globbing="false" required="true">
+        <maml:name>NewList</maml:name>
+        <maml:description>
+          <maml:para>PassiveInstall.Structures.FirewallRules structure from the post-installation snapshot.</maml:para>
+          <maml:para>This is a list of the firewall rules, typically taken by Get-PassiceFirewallRules after the application installation.</maml:para>
+        </maml:description>
+        <command:parameterValue variableLength="true" required="true">PassiveInstall.Structures.FirewallRules</command:parameterValue>
+        <dev:type>
+          <maml:name>PassiveInstall.Structures.FirewallRules</maml:name>
+          <maml:uri/>
+        </dev:type>
+        <dev:defaultValue>none</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+          <maml:uri> </maml:uri>
+          <maml:description>
+            <maml:para>You cannot pipe objects to Redo-PassiveNewFirewallRules.</maml:para>
+          </maml:description>
+        </dev:type>
+      </command:inputType>
+    </command:inputTypes>
+
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>PassiveInstall.Structures.FirewallRules</maml:name>
+          <maml:uri> </maml:uri>
+          <maml:description>
+            <maml:para/>
+          </maml:description>
+        </dev:type>
+        <maml:description>
+          <maml:para>The rules that were updated.</maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+
+    <command:terminatingErrors>
+      <maml:description>
+        <maml:para>No errors should occur on a healthy system.</maml:para>
+      </maml:description>
+    </command:terminatingErrors>
+    <command:nonTerminatingErrors/>
+
+    <command:examples>
+
+      <command:example>
+        <maml:title>-------------- EXAMPLE 1 --------------</maml:title>
+        <maml:introduction>
+          <maml:para>This is a typical usage scenario:</maml:para>
+        </maml:introduction>
+
+        <dev:remarks>
+          <maml:para></maml:para>
+        </dev:remarks>
+        
+        <command:code/>
+        <command:code>
+PS> 
+PS> $BeforeSnapshot = Get-PassiveFirewallRules
+PS> msiexec /q vendorInstaller.msi
+PS> $AfterSnapshot = Get-PassiveFirewallRules
+PS> $Changes = Redo-PassiveNewFirewallRules $BeforeSnapshot $AfterSnapshot
+PS> $Changes.Show()
+PS>
+        </command:code>
+
+        <dev:remarks>
+          <maml:para></maml:para>
+          <maml:para>The scenario is an application installation for which we want any firewall rules added by the vendor installer to be properly captured by the MMPT.</maml:para>
+          <maml:para>    1) Before the application installation a snapshot is saved.</maml:para>
+          <maml:para>    2) The application installer is run.</maml:para>
+          <maml:para>    3) After the application installation, a second snapshort is saved.</maml:para>
+          <maml:para>    4) Then the Redo cmdlet is run to re-apply any new firewall rules added by the installer.</maml:para>
+          <maml:para>    5) For giggles, the rules that were re-applied are displayed using the Show() method on the output object.</maml:para>
+          <maml:para></maml:para>
+          <maml:para>Only rules that are new in the after snapshot will be updated.</maml:para>
+        </dev:remarks>
       </command:example>
 
     </command:examples>
@@ -2582,7 +2794,7 @@
         <maml:para>Removed the named shortcut(s) if on the desktop, either all user's or current user's.</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2026, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>Remove</command:verb>
       <command:noun>PassiveDesktopShortcuts</command:noun>
@@ -2624,15 +2836,12 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name> </maml:name>
+          <maml:name>None</maml:name>
           <maml:uri> </maml:uri>
           <maml:description>
-            <maml:para/>
+            <maml:para>You cannot pipe objects to Remove-PassiveDesktopShortcuts.</maml:para>
           </maml:description>
         </dev:type>
-        <maml:description>
-          <maml:para>You cannot pipe objects to Remove-PassiveDesktopShortcuts.</maml:para>
-        </maml:description>
       </command:inputType>
     </command:inputTypes>
 
@@ -2665,16 +2874,17 @@
         <maml:introduction>
           <maml:para>Remove two shortcuts</maml:para>
         </maml:introduction>
-        <dev:code>PS C:\>Remove-PassiveDesktopSHortcut -Names 'VendorApp', 'VendorHelp.lnk'</dev:code>
+        
+        <command:code/>
+        <command:code>
+PS>
+PS> Remove-PassiveDesktopSHortcut -Names 'VendorApp', 'VendorHelp.lnk'
+PS>
+        </command:code>
         <dev:remarks>
           <maml:para>Removes the requested shortcuts from All User's or Current User's desktop, if present.</maml:para>
           <maml:para/>
         </dev:remarks>
-        <command:commandLines>
-          <command:commandLine>
-            <command:commandText/>
-          </command:commandLine>
-        </command:commandLines>
       </command:example>
     </command:examples>
   </command:command>
@@ -2687,7 +2897,7 @@
         <maml:para>Removed the named environment variables.</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2026, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>Remove</command:verb>
       <command:noun>PassiveEnvironmentVariables</command:noun>
@@ -2729,15 +2939,12 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name> </maml:name>
+          <maml:name>None</maml:name>
           <maml:uri> </maml:uri>
           <maml:description>
-            <maml:para/>
+            <maml:para>You cannot pipe objects to Remove-PassiveEnvironmentVariables.</maml:para>
           </maml:description>
         </dev:type>
-        <maml:description>
-          <maml:para>You cannot pipe objects to Remove-PassiveEnvironmentVariables.</maml:para>
-        </maml:description>
       </command:inputType>
     </command:inputTypes>
 
@@ -2770,16 +2977,17 @@
         <maml:introduction>
           <maml:para>Remove two variables</maml:para>
         </maml:introduction>
-        <dev:code>PS C:\>Remove-PassiveEnvironmentVariables -Names 'ONEDRIVE', 'VendorStuff'</dev:code>
+        
+        <command:code/>
+        <command:code>
+PS>
+PS> Remove-PassiveEnvironmentVariables -Names 'ONEDRIVE', 'VendorStuff'
+PS>
+        </command:code>
         <dev:remarks>
           <maml:para>Removes the requested environment variables, if present.</maml:para>
           <maml:para/>
         </dev:remarks>
-        <command:commandLines>
-          <command:commandLine>
-            <command:commandText/>
-          </command:commandLine>
-        </command:commandLines>
       </command:example>
     </command:examples>
   </command:command>
@@ -2792,7 +3000,7 @@
         <maml:para>Removed the named Files.</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2026, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>Remove</command:verb>
       <command:noun>PassiveFiles</command:noun>
@@ -2834,14 +3042,13 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name> </maml:name>
+          <maml:name>None</maml:name>
           <maml:uri> </maml:uri>
           <maml:description>
-            <maml:para/>
+            <maml:para>You cannot pipe objects to Remove-PassiveFiles.</maml:para>
           </maml:description>
         </dev:type>
         <maml:description>
-          <maml:para>You cannot pipe objects to Remove-PassiveFiles.</maml:para>
         </maml:description>
       </command:inputType>
     </command:inputTypes>
@@ -2875,16 +3082,17 @@
         <maml:introduction>
           <maml:para>Remove two Files</maml:para>
         </maml:introduction>
-        <dev:code>PS C:\>Remove-PassiveFiles -Folders '"C:\Program Files\Vendor\App\Cache\foo.txt", "C:\Program Files\Vendor\App\x64\bar.txt"'</dev:code>
+        
+        <command:code/>
+        <command:code>
+PS>
+PS> Remove-PassiveFiles -Folders '"C:\Program Files\Vendor\App\Cache\foo.txt", "C:\Program Files\Vendor\App\x64\bar.txt"'
+PS>
+        </command:code>
         <dev:remarks>
           <maml:para>Removes the requested files, if present.</maml:para>
           <maml:para/>
         </dev:remarks>
-        <command:commandLines>
-          <command:commandLine>
-            <command:commandText/>
-          </command:commandLine>
-        </command:commandLines>
       </command:example>
     </command:examples>
   </command:command>
@@ -2897,7 +3105,7 @@
         <maml:para>Removed the named Folders.</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2026, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>Remove</command:verb>
       <command:noun>PassiveFolders</command:noun>
@@ -2939,15 +3147,12 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name> </maml:name>
+          <maml:name>None</maml:name>
           <maml:uri> </maml:uri>
           <maml:description>
-            <maml:para/>
+            <maml:para>You cannot pipe objects to Remove-PassiveFolders.</maml:para>
           </maml:description>
         </dev:type>
-        <maml:description>
-          <maml:para>You cannot pipe objects to Remove-PassiveFolders.</maml:para>
-        </maml:description>
       </command:inputType>
     </command:inputTypes>
 
@@ -2980,16 +3185,17 @@
         <maml:introduction>
           <maml:para>Remove two Folders</maml:para>
         </maml:introduction>
-        <dev:code>PS C:\>Remove-PassiveFolders -Folders '"C:\Program Files\Vendor\App\Cache", "C:\Program Files\Vendor\App\x64"'</dev:code>
+        
+        <command:code/>
+        <command:code>
+PS>
+PS> Remove-PassiveFolders -Folders '"C:\Program Files\Vendor\App\Cache", "C:\Program Files\Vendor\App\x64"'
+PS>
+        </command:code>
         <dev:remarks>
           <maml:para>Removes the requested folders, if present.</maml:para>
           <maml:para/>
         </dev:remarks>
-        <command:commandLines>
-          <command:commandLine>
-            <command:commandText/>
-          </command:commandLine>
-        </command:commandLines>
       </command:example>
     </command:examples>
   </command:command>
@@ -3003,7 +3209,7 @@
         <maml:para>Look at the contents of the named folder and optionally for each subfolder, for filesnames matching a pattern, and remove it (optionally if it was created in the last 24 hours).</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2026, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>Remove</command:verb>
       <command:noun>PassiveInstallerCacheFilePattern</command:noun>
@@ -3102,15 +3308,12 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name> </maml:name>
+          <maml:name>None</maml:name>
           <maml:uri> </maml:uri>
           <maml:description>
-            <maml:para/>
+            <maml:para>You cannot pipe objects to Remove-PassiveInstallerCacheFilePattern.</maml:para>
           </maml:description>
         </dev:type>
-        <maml:description>
-          <maml:para>You cannot pipe objects to Remove-PassiveInstallerCacheFilePattern.</maml:para>
-        </maml:description>
       </command:inputType>
     </command:inputTypes>
 
@@ -3143,16 +3346,17 @@
         <maml:introduction>
           <maml:para>Remove the new windows installer sourcecache files for an application that caches into a randomly generated name.</maml:para>
         </maml:introduction>
-        <dev:code>PS C:\>Remove-PassiveInstallerCacheFilePattern -Folder 'C:\Windows\Installer' -Pattern "*SourceHash*" -IfToday</dev:code>
+        
+        <command:code/>
+        <command:code>
+PS>
+PS> Remove-PassiveInstallerCacheFilePattern -Folder 'C:\Windows\Installer' -Pattern "*SourceHash*" -IfToday
+PS>
+        </command:code>
         <dev:remarks>
           <maml:para>Removes from the suggested folder that match the pattern.</maml:para>
           <maml:para/>
         </dev:remarks>
-        <command:commandLines>
-          <command:commandLine>
-            <command:commandText/>
-          </command:commandLine>
-        </command:commandLines>
       </command:example>
 
       <command:example>
@@ -3160,16 +3364,17 @@
         <maml:introduction>
           <maml:para>Remove all newly created msi files directly under the Windows installer folder created in the last 24 hours.</maml:para>
         </maml:introduction>
-        <dev:code>PS C:\>Remove-PassiveInstallerCacheFilePattern -Folder "C:\Windows\Installer" -Pattern "*.msi" -IfToday</dev:code>
+        
+        <command:code/>
+        <command:code>
+PS>
+PS> Remove-PassiveInstallerCacheFilePattern -Folder "C:\Windows\Installer" -Pattern "*.msi" -IfToday
+PS>
+        </command:code>
         <dev:remarks>
           <maml:para>Removes new msi files directly under the folder.</maml:para>
           <maml:para/>
         </dev:remarks>
-        <command:commandLines>
-          <command:commandLine>
-            <command:commandText/>
-          </command:commandLine>
-        </command:commandLines>
       </command:example>
 
          <command:example>
@@ -3177,16 +3382,17 @@
         <maml:introduction>
           <maml:para>Remove all newly created matching files anywhere under the Windows installer folder created in the last 24 hours.</maml:para>
         </maml:introduction>
-        <dev:code>PS C:\>Remove-PassiveInstallerCacheFilePattern -Folder "C:\Windows\Installer" -Pattern "*.msi" -Recursive -IfToday</dev:code>
+        
+        <command:code/>
+        <command:code>
+PS>
+PS> Remove-PassiveInstallerCacheFilePattern -Folder "C:\Windows\Installer" -Pattern "*.msi" -Recursive -IfToday
+PS>
+        </command:code>
         <dev:remarks>
           <maml:para>Removes new msi files under the folder tree.</maml:para>
           <maml:para/>
         </dev:remarks>
-        <command:commandLines>
-          <command:commandLine>
-            <command:commandText/>
-          </command:commandLine>
-        </command:commandLines>
       </command:example>
     
   </command:examples>
@@ -3201,7 +3407,7 @@
         <maml:para>Delete the named folder, optionally checking first if empty and/or if it was created in the last 24 hours.</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2026, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>Remove</command:verb>
       <command:noun>PassiveInstallerCacheFolders</command:noun>
@@ -3284,15 +3490,12 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name> </maml:name>
+          <maml:name>None</maml:name>
           <maml:uri> </maml:uri>
           <maml:description>
-            <maml:para/>
+            <maml:para>You cannot pipe objects to Remove-PassiveInstallerCacheFolders.</maml:para>
           </maml:description>
         </dev:type>
-        <maml:description>
-          <maml:para>You cannot pipe objects to Remove-PassiveInstallerCacheFolders.</maml:para>
-        </maml:description>
       </command:inputType>
     </command:inputTypes>
 
@@ -3324,18 +3527,18 @@
         <maml:introduction>
           <maml:para>Remove the named folder, but only if it is empty and created today.</maml:para>
         </maml:introduction>
-        <dev:code>PS C:\>Remove-PassiveInstallerCacheFolders -Folder "C:\Windows\Installer\{4DD78A4D-6BED-4FA4-8860-25C7EFCD84BA}" -IfEmpty -IfToday </dev:code>
+        
+        <command:code/>
+        <command:code>
+PS>
+PS> Remove-PassiveInstallerCacheFolders -Folder "C:\Windows\Installer\{4DD78A4D-6BED-4FA4-8860-25C7EFCD84BA}" -IfEmpty -IfToday
+PS>
+        </command:code>
         <dev:remarks>
           <maml:para>Checks that the folder exists, is empty, and created today; if so the folder is deleted.</maml:para>
           <maml:para/>
         </dev:remarks>
-        <command:commandLines>
-          <command:commandLine>
-            <command:commandText/>
-          </command:commandLine>
-        </command:commandLines>
       </command:example>
-    
   </command:examples>
   </command:command>
   
@@ -3347,7 +3550,7 @@
         <maml:para>Removed the named Registry Key or Item.</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2026, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>Remove</command:verb>
       <command:noun>PassiveRegistryItem</command:noun>
@@ -3407,15 +3610,12 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name> </maml:name>
+          <maml:name>None</maml:name>
           <maml:uri> </maml:uri>
           <maml:description>
-            <maml:para/>
+            <maml:para>You cannot pipe objects to Remove-PassiveRegistryItem.</maml:para>
           </maml:description>
         </dev:type>
-        <maml:description>
-          <maml:para>You cannot pipe objects to Remove-PassiveRegistryItem.</maml:para>
-        </maml:description>
       </command:inputType>
     </command:inputTypes>
 
@@ -3448,16 +3648,17 @@
         <maml:introduction>
           <maml:para>Remove a key and anything underneath it.</maml:para>
         </maml:introduction>
-        <dev:code>PS C:\>Remove-PassiveRegistryItem -Hive "HKEY_LOCAL_MACHINE" -Item "Software\Policies\Vendor"</dev:code>
+        
+        <command:code/>
+        <command:code>
+PS>
+PS> Remove-PassiveRegistryItem -Hive "HKEY_LOCAL_MACHINE" -Item "Software\Policies\Vendor"
+PS>
+        </command:code>
         <dev:remarks>
           <maml:para>Removes the registry key, and all children, if present.</maml:para>
           <maml:para/>
         </dev:remarks>
-        <command:commandLines>
-          <command:commandLine>
-            <command:commandText/>
-          </command:commandLine>
-        </command:commandLines>
       </command:example>
 
       <command:example>
@@ -3465,16 +3666,17 @@
         <maml:introduction>
           <maml:para>Remove a registry item.</maml:para>
         </maml:introduction>
-        <dev:code>PS C:\>Remove-PassiveRegistryItem -HIVE "HKLM" -Item "Software\Vendor\ValueName"</dev:code>
+        
+        <command:code/>
+        <command:code>
+PS>
+PS> Remove-PassiveRegistryItem -HIVE "HKLM" -Item "Software\Vendor\ValueName"
+PS>
+        </command:code>
         <dev:remarks>
           <maml:para>Removes the registry item, if present.</maml:para>
           <maml:para/>
         </dev:remarks>
-        <command:commandLines>
-          <command:commandLine>
-            <command:commandText/>
-          </command:commandLine>
-        </command:commandLines>
       </command:example>
 
   </command:examples>
@@ -3488,7 +3690,7 @@
         <maml:para>Removed the named shortcut(s) if on the start menu, either all user's or current user's.</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2026, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>Remove</command:verb>
       <command:noun>PassiveStartMenuShortcuts</command:noun>
@@ -3530,15 +3732,12 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name> </maml:name>
+          <maml:name>None</maml:name>
           <maml:uri> </maml:uri>
           <maml:description>
-            <maml:para/>
+            <maml:para>You cannot pipe objects to Remove-PassiveStartMenuShortcuts.</maml:para>
           </maml:description>
         </dev:type>
-        <maml:description>
-          <maml:para>You cannot pipe objects to Remove-PassiveStartMenuShortcuts.</maml:para>
-        </maml:description>
       </command:inputType>
     </command:inputTypes>
 
@@ -3571,16 +3770,17 @@
         <maml:introduction>
           <maml:para>Remove two shortcuts</maml:para>
         </maml:introduction>
-        <dev:code>PS C:\>Remove-PassiveStartMenuShortcuts -Names 'VendorApp', 'VendorHelp.lnk'</dev:code>
+        
+        <command:code/>
+        <command:code>
+PS>
+PS> Remove-PassiveStartMenuShortcuts -HIVE "HKLM" -Item "Software\Vendor\ValueNameRemove-PassiveStartMenuShortcuts -Names 'VendorApp', 'VendorHelp.lnk'
+PS>
+        </command:code>
         <dev:remarks>
           <maml:para>Removes the requested shortcuts from All User's or Current User's desktop, if present.</maml:para>
           <maml:para/>
         </dev:remarks>
-        <command:commandLines>
-          <command:commandLine>
-            <command:commandText/>
-          </command:commandLine>
-        </command:commandLines>
       </command:example>
     </command:examples>
   </command:command>
@@ -3595,7 +3795,7 @@
         <maml:para>Sets each listed windows service to use the requested account name for the logon account.</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2026, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>Set</command:verb>
       <command:noun>PassiveServiceAccount</command:noun>
@@ -3659,15 +3859,12 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name> </maml:name>
+          <maml:name>None</maml:name>
           <maml:uri> </maml:uri>
           <maml:description>
-            <maml:para/>
+            <maml:para>You cannot pipe objects to Set-PassiveServiceAccount.</maml:para>
           </maml:description>
         </dev:type>
-        <maml:description>
-          <maml:para>You cannot pipe objects to Set-PassiveServiceAccount.</maml:para>
-        </maml:description>
       </command:inputType>
     </command:inputTypes>
 
@@ -3700,17 +3897,18 @@
         <maml:introduction>
           <maml:para>Changes a service to use the local system account</maml:para>
         </maml:introduction>
-        <dev:code>PS C:\>Set-PassiveServiceAccount -Name 'CrummyVendorUpdateService' -Account "LocalSystem"</dev:code>
+        
+        <command:code/>
+        <command:code>
+PS>
+PS> Set-PassiveServiceAccount -Name 'CrummyVendorUpdaterService' -Account "LocalSystem"
+PS>
+        </command:code>
         <dev:remarks>
           <maml:para>Use the 'Service Name' and not the 'Display Name' when naming a service.</maml:para>
           <maml:para>If the service is currently running, this cmdlet will not automatically stop/restart it, but it will be updated.</maml:para>
           <maml:para/>
         </dev:remarks>
-        <command:commandLines>
-          <command:commandLine>
-            <command:commandText/>
-          </command:commandLine>
-        </command:commandLines>
       </command:example>
 
 
@@ -3719,17 +3917,18 @@
         <maml:introduction>
           <maml:para>Sets a service to use a different account.</maml:para>
         </maml:introduction>
-        <dev:code>PS C:\>Set-PassiveServiceAccount -Name "CrummyVendorUpdateService" -Account "NT Authority\LocalService"</dev:code>
+        
+        <command:code/>
+        <command:code>
+PS>
+PS> Set-PassiveServiceAccount -Name "CrummyVendorUpdaterService" -Account "NT Authority\LocalService"
+PS>
+        </command:code>
         <dev:remarks>
           <maml:para>Use the 'Service Name' and not the 'Display Name' when naming a service.</maml:para>
           <maml:para>If the service is currently running, this cmdlet will not automatically stop/restart it, but it will be updated.</maml:para>
           <maml:para/>
         </dev:remarks>
-        <command:commandLines>
-          <command:commandLine>
-            <command:commandText/>
-          </command:commandLine>
-        </command:commandLines>
       </command:example>
 
     </command:examples>
@@ -3743,7 +3942,7 @@
         <maml:para>Updates the form of a shortcut to not link directly to a bat or cmd file.</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2026, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>Set</command:verb>
       <command:noun>PassiveShortcutFixupBatCmd</command:noun>
@@ -3787,15 +3986,12 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name> </maml:name>
+          <maml:name>None</maml:name>
           <maml:uri> </maml:uri>
           <maml:description>
-            <maml:para/>
+            <maml:para>You cannot pipe objects to Set-PassiveShortcutFixupBatCmd.</maml:para>
           </maml:description>
         </dev:type>
-        <maml:description>
-          <maml:para>You cannot pipe objects to Set-PassiveShortcutFixupBatCmd.</maml:para>
-        </maml:description>
       </command:inputType>
     </command:inputTypes>
 
@@ -3828,16 +4024,17 @@
         <maml:introduction>
           <maml:para>Update a shortcut</maml:para>
         </maml:introduction>
-        <dev:code>PS C:\>Set-PassiveShortcutFixupBatCmd -Shortcut "C:\ProgramData\Microsoft\Start Menu\Vendor\Something.lnk"</dev:code>
+        
+        <command:code/>
+        <command:code>
+PS>
+PS> Set-PassiveShortcutFixupBatCmd -Shortcut "C:\ProgramData\Microsoft\Start Menu\Vendor\Something.lnk"
+PS>
+        </command:code>
         <dev:remarks>
           <maml:para>Updates the requested shortcut.</maml:para>
           <maml:para/>
         </dev:remarks>
-        <command:commandLines>
-          <command:commandLine>
-            <command:commandText/>
-          </command:commandLine>
-        </command:commandLines>
       </command:example>
     </command:examples>
   </command:command>
@@ -3850,7 +4047,7 @@
         <maml:para>Updates the form of a shortcut to not link directly to a reg file.</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2026, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>Set</command:verb>
       <command:noun>PassiveShortcutFixupReg</command:noun>
@@ -3894,15 +4091,12 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name> </maml:name>
+          <maml:name>None</maml:name>
           <maml:uri> </maml:uri>
           <maml:description>
-            <maml:para/>
+            <maml:para>You cannot pipe objects to Set-PassiveShortcutFixupReg.</maml:para>
           </maml:description>
         </dev:type>
-        <maml:description>
-          <maml:para>You cannot pipe objects to Set-PassiveShortcutFixupReg.</maml:para>
-        </maml:description>
       </command:inputType>
     </command:inputTypes>
 
@@ -3935,16 +4129,17 @@
         <maml:introduction>
           <maml:para>Update a shortcut</maml:para>
         </maml:introduction>
-        <dev:code>PS C:\>Set-PassiveShortcutFixupReg -Shortcut "C:\ProgramData\Microsoft\Start Menu\Vendor\Something.lnk"</dev:code>
+        
+        <command:code/>
+        <command:code>
+PS>
+PS> Set-PassiveShortcutFixupReg -Shortcut "C:\ProgramData\Microsoft\Start Menu\Vendor\Something.lnk"
+PS>
+        </command:code>
         <dev:remarks>
           <maml:para>Updates the requested shortcut.</maml:para>
           <maml:para/>
         </dev:remarks>
-        <command:commandLines>
-          <command:commandLine>
-            <command:commandText/>
-          </command:commandLine>
-        </command:commandLines>
       </command:example>
     </command:examples>
   </command:command>
@@ -3957,7 +4152,7 @@
         <maml:para>Updates the form of a shortcut to not link have a space at the end of the filename.</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2026, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>Set</command:verb>
       <command:noun>PassiveShortcutFixupSpaceAtEnd</command:noun>
@@ -4001,15 +4196,12 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name> </maml:name>
+          <maml:name>None</maml:name>
           <maml:uri> </maml:uri>
           <maml:description>
-            <maml:para/>
+            <maml:para>You cannot pipe objects to Set-PassiveShortcutFixupSpaceAtEnd.</maml:para>
           </maml:description>
         </dev:type>
-        <maml:description>
-          <maml:para>You cannot pipe objects to Set-PassiveShortcutFixupSpaceAtEnd.</maml:para>
-        </maml:description>
       </command:inputType>
     </command:inputTypes>
 
@@ -4042,16 +4234,17 @@
         <maml:introduction>
           <maml:para>Update a shortcut</maml:para>
         </maml:introduction>
-        <dev:code>PS C:\>Set-PassiveShortcutFixupSpaceAtEnd -Shortcut "C:\ProgramData\Microsoft\Start Menu\Vendor\Something .lnk"</dev:code>
+        
+        <command:code/>
+        <command:code>
+PS>
+PS> Set-PassiveShortcutFixupSpaceAtEnd -Shortcut "C:\ProgramData\Microsoft\Start Menu\Vendor\Something .lnk"
+PS>
+        </command:code>
         <dev:remarks>
-          <maml:para>Updates the requested shortcut.</maml:para>
+          <maml:para>Updates the requested shortcut filename.</maml:para>
           <maml:para/>
         </dev:remarks>
-        <command:commandLines>
-          <command:commandLine>
-            <command:commandText/>
-          </command:commandLine>
-        </command:commandLines>
       </command:example>
     </command:examples>
   </command:command>
@@ -4064,7 +4257,7 @@
         <maml:para>Sets each listed windows service to use the requested account name for the logon account.</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2026, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>Set</command:verb>
       <command:noun>PassiveWindowsServiceAccount</command:noun>
@@ -4127,15 +4320,12 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name> </maml:name>
+          <maml:name>None</maml:name>
           <maml:uri> </maml:uri>
           <maml:description>
-            <maml:para/>
+            <maml:para>You cannot pipe objects to Set-PassiveServiceAccount.</maml:para>
           </maml:description>
         </dev:type>
-        <maml:description>
-          <maml:para>You cannot pipe objects to Set-PassiveServiceAccount.</maml:para>
-        </maml:description>
       </command:inputType>
     </command:inputTypes>
 
@@ -4168,17 +4358,18 @@
         <maml:introduction>
           <maml:para>Changes a service to use the local system account</maml:para>
         </maml:introduction>
-        <dev:code>PS C:\>Set-PassiveServiceAccount -Name 'CrummyVendorUpdateService' -Account "LocalSystem"</dev:code>
+        
+        <command:code/>
+        <command:code>
+PS>
+PS> Set-PassiveServiceAccount -Name 'CrummyVendorNetworkService' -Account "LocalSystem"
+PS>
+        </command:code>
         <dev:remarks>
           <maml:para>Use the 'Service Name' and not the 'Display Name' when naming a service.</maml:para>
           <maml:para>If the service is currently running, this cmdlet will not automatically stop/restart it, but it will be updated.</maml:para>
           <maml:para/>
         </dev:remarks>
-        <command:commandLines>
-          <command:commandLine>
-            <command:commandText/>
-          </command:commandLine>
-        </command:commandLines>
       </command:example>
 
 
@@ -4187,17 +4378,18 @@
         <maml:introduction>
           <maml:para>Sets a service to use a different account.</maml:para>
         </maml:introduction>
-        <dev:code>PS C:\>Set-PassiveServiceAccount -Name "CrummyVendorUpdateService" -Account "NT Authority\LocalService"</dev:code>
+        
+        <command:code/>
+        <command:code>
+PS>
+PS> Set-PassiveServiceAccount -Name "CrummyVendorUpdateNetworkService" -Account "NT Authority\LocalService"
+PS>
+        </command:code>
         <dev:remarks>
           <maml:para>Use the 'Service Name' and not the 'Display Name' when naming a service.</maml:para>
           <maml:para>If the service is currently running, this cmdlet will not automatically stop/restart it, but it will be updated.</maml:para>
           <maml:para/>
         </dev:remarks>
-        <command:commandLines>
-          <command:commandLine>
-            <command:commandText/>
-          </command:commandLine>
-        </command:commandLines>
       </command:example>
 
     </command:examples>
@@ -4211,7 +4403,7 @@
         <maml:para>Updates colors used in the current powershell window, optionally clearing the screen.</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2026, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>Set</command:verb>
       <command:noun>PassiveWinColors</command:noun>
@@ -4327,15 +4519,12 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name> </maml:name>
+          <maml:name>None</maml:name>
           <maml:uri> </maml:uri>
           <maml:description>
-            <maml:para/>
+            <maml:para>You cannot pipe objects to Set-PassiveWinColors.</maml:para>
           </maml:description>
         </dev:type>
-        <maml:description>
-          <maml:para>You cannot pipe objects to Set-PassiveWinColors.</maml:para>
-        </maml:description>
       </command:inputType>
     </command:inputTypes>
 
@@ -4368,7 +4557,13 @@
         <maml:introduction>
           <maml:para>Change Background only and clears the window so as to set the entire background.</maml:para>
         </maml:introduction>
-        <dev:code>PS C:\>Set-PassiveWinColors -Background 'Gray' -Clear</dev:code>
+        
+        <command:code/>
+        <command:code>
+PS>
+PS> Set-PassiveWinColors -Background 'Gray' -Clear
+PS>
+        </command:code>
         <dev:remarks>
           <maml:para>
             If you change the window background without clearing, only the cells where future text is displayed gets the
@@ -4377,11 +4572,6 @@
           </maml:para>
           <maml:para/>
         </dev:remarks>
-        <command:commandLines>
-          <command:commandLine>
-            <command:commandText/>
-          </command:commandLine>
-        </command:commandLines>
       </command:example>
 
       <command:example>
@@ -4389,19 +4579,20 @@
         <maml:introduction>
           <maml:para>Change the default foreground text color and Background and clears the window so as to set the entire background.</maml:para>
         </maml:introduction>
-        <dev:code>PS C:\>Set-PassiveWinColors -Foreground 'Black' -Background 'Gray' -Clear</dev:code>
+        
+        <command:code/>
+        <command:code>
+PS>
+PS> Set-PassiveWinColors -Foreground 'Black' -Background 'Gray' -Clear
+PS>
+        </command:code>
         <dev:remarks>
           <maml:para>
             Changing the foreground color only sets the default text color for future output; if future cmdlets output colored
-            text it still will be colored.
+            text it still will be colored as they requested.
           </maml:para>
           <maml:para/>
         </dev:remarks>
-        <command:commandLines>
-          <command:commandLine>
-            <command:commandText/>
-          </command:commandLine>
-        </command:commandLines>
       </command:example>
 
     </command:examples>
@@ -4415,7 +4606,7 @@
         <maml:para>Updates size/position used in the current powershell window.</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2026, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>Set</command:verb>
       <command:noun>PassiveWinSize</command:noun>
@@ -4551,15 +4742,12 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name> </maml:name>
+          <maml:name>None</maml:name>
           <maml:uri> </maml:uri>
           <maml:description>
-            <maml:para/>
+            <maml:para>You cannot pipe objects to Set-PassiveWinSize.</maml:para>
           </maml:description>
         </dev:type>
-        <maml:description>
-          <maml:para>You cannot pipe objects to Set-PassiveWinSize.</maml:para>
-        </maml:description>
       </command:inputType>
     </command:inputTypes>
 
@@ -4580,7 +4768,7 @@
 
     <command:terminatingErrors>
       <maml:description>
-        <maml:para>The worst that can happen is that you set foreground to match background and you can't read a thing.</maml:para>
+        <maml:para>The worst that can happen is that you set sizes smaller than powershell allows.</maml:para>
       </maml:description>
     </command:terminatingErrors>
     <command:nonTerminatingErrors/>
@@ -4592,16 +4780,16 @@
         <maml:introduction>
           <maml:para>Change size, position, and title.</maml:para>
         </maml:introduction>
-        <dev:code>PS C:\>Set-PassiveWinSize -Height 44 -Width 120 -X 5 -Y 5 -Title "Primary PassiveInstall for 7-Zip"</dev:code>
+        
+        <command:code/>
+        <command:code>
+PS>
+PS> Set-PassiveWinSize -Height 44 -Width 120 -X 5 -Y 5 -Title "Primary PassiveInstall for 7-Zip"
+PS>
+        </command:code>
         <dev:remarks>
-          <maml:para>Updates the window.</maml:para>
-          <maml:para/>
+          <maml:para>Updates the window size, loacation, and sets the window title.</maml:para>
         </dev:remarks>
-        <command:commandLines>
-          <command:commandLine>
-            <command:commandText/>
-          </command:commandLine>
-        </command:commandLines>
       </command:example>
 
       <command:example>
@@ -4609,18 +4797,56 @@
         <maml:introduction>
           <maml:para>Hide the window.</maml:para>
         </maml:introduction>
-        <dev:code>PS C:\>Set-PassiveWinSize -DoPasive</dev:code>
+        
+        <command:code/>
+        <command:code>
+PS>
+PS> Set-PassiveWinSize -DoSilent
+PS>
+        </command:code>
         <dev:remarks>
-          <maml:para>Hides the window.</maml:para>
+          <maml:para>Hides the window by minimizing it.</maml:para>
           <maml:para/>
         </dev:remarks>
-        <command:commandLines>
-          <command:commandLine>
-            <command:commandText/>
-          </command:commandLine>
-        </command:commandLines>
       </command:example>
 
+      <command:example>
+        <maml:title>-------------- EXAMPLE 3 --------------</maml:title>
+        <maml:introduction>
+          <maml:para>Application install wrapper script.</maml:para>
+        </maml:introduction>
+
+        <command:code/>
+        <command:code>
+PS>
+if ($DoSilent -eq 1)
+{
+    Set-PassiveWinSize 10 7 5 5 -Title "PowerShell - $($AppName)" -DoSilent
+    # Ensure we are running elevated
+    Approve-PassiveElevation -AsAdmin
+}
+else
+{
+    Set-PassiveWinSize 80 40 5 5 -Title "PowerShell - $($AppName)"
+    Set-PassiveWinColors  -Background 'DarkGray' -Foreground 'White'
+
+    # Ensure we are running elevated
+    Approve-PassiveElevation -AsAdmin
+
+    Set-PassiveWinSize  100 44 10 10 -Title "[Elevated] PowerShell - $($AppName)"
+    Set-PassiveWinColors  -Background 'DarkGray' -Foreground 'White'
+
+    Write-host 'Starting - PassiveInstall.ps1'
+}
+PS>
+        </command:code>
+        <dev:remarks>
+          <maml:para>We often use this in our automated packaging scripts.</maml:para>
+          <maml:para>The $DoSilent variable allows the same script to work silently for Intune installs and passively for our packaging efforts where we are not worried about someone interfering with the install but like to see the progress happening.</maml:para>
+          <maml:para>In the passive case, the unelevated launcher window is smaller and gray, while the elevated window doing the work is larger.</maml:para>
+          <maml:para>Most of the cmdlets in this module have a -DoSilent option you can use as well.</maml:para>
+        </dev:remarks>
+      </command:example>
     </command:examples>
   </command:command>
 
@@ -4633,7 +4859,7 @@
         <maml:para>Runs a visual timer for a given time with optional message.</maml:para>
       </maml:description>
       <maml:copyright>
-        <maml:para>Copyright 2021, TMurgent Technologies, LLP</maml:para>
+        <maml:para>Copyright 2026, TMurgent Technologies, LLP</maml:para>
       </maml:copyright>
       <command:verb>Show</command:verb>
       <command:noun>PassiveTimer</command:noun>
@@ -4710,15 +4936,12 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name> </maml:name>
+          <maml:name>None</maml:name>
           <maml:uri> </maml:uri>
           <maml:description>
-            <maml:para/>
+            <maml:para>You cannot pipe objects to Show-PassiveTimer.</maml:para>
           </maml:description>
         </dev:type>
-        <maml:description>
-          <maml:para>You cannot pipe objects to Show-PassiveTimer.</maml:para>
-        </maml:description>
       </command:inputType>
     </command:inputTypes>
 
@@ -4751,18 +4974,18 @@
         <maml:introduction>
           <maml:para>Start a timer with a message</maml:para>
         </maml:introduction>
-        <dev:code>PS C:\>Show-PassiveTimer -LengthMS 10000 -Message 'Delay timer before end of script. Ctrl-C to terminate early.'</dev:code>
+        
+        <command:code/>
+        <command:code>
+PS>
+PS> Show-PassiveTimer -LengthMS 10000 -Message 'Delay timer before end of script. Ctrl-C to terminate early.'
+PS>
+        </command:code>
         <dev:remarks>
           <maml:para>Typical use at the end of a PowerShell script, allowing the user to review output of previous commands or ending the script at will.</maml:para>
           <maml:para/>
         </dev:remarks>
-        <command:commandLines>
-          <command:commandLine>
-            <command:commandText/>
-          </command:commandLine>
-        </command:commandLines>
       </command:example>
-
     </command:examples>
   </command:command>
 

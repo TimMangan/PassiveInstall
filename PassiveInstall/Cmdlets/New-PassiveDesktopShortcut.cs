@@ -196,6 +196,16 @@ namespace PassiveInstall.Cmdlets
                                 {
                                     args += arg + " ";
                                 }
+                                // remove any leading spaces
+                                while (args.Length > 0 && args[0] == ' ')
+                                {
+                                    args = args.Substring(1);
+                                }
+                                // remove any trailing spaces
+                                while (args.Length > 0 && args[args.Length - 1] == ' ')
+                                {
+                                    args = args.Substring(0, args.Length - 1);
+                                }
                                 lnk.Arguments = args;
                             }
                             if (_Description != null)

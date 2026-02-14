@@ -22,6 +22,8 @@ The following is a summary of the cmdlets.  See PassiveInstall.dll-help.xml for 
 		Copies a folder to the destination, making sure intervening directories are created if needed. Existing files not over-written by default.
   * **Disable-PassiveWindowsService**
 		Checks to see that the service exists and disables it.  Note: it does not stop the service if running.
+  * **Get-PassiveFirewallRules**
+        Returns a structure containing the Defaults and Parameters for firewall rules from the registry
   * **Install-PassiveInstallFile**
 		Performs appropriate (file type dependent) installation activity on MSI, MSP, EXE, ZIP, PS1, BAT, CMD, REG
   * **Move-PassiveFolder**
@@ -48,6 +50,8 @@ The following is a summary of the cmdlets.  See PassiveInstall.dll-help.xml for 
 		Performs an ngen compilation of an MSIL file into the native interface format.
   * **Optimize-PassiveNgenQueues** 
 		Locates and flushes each of the NGEN optimization queues.
+  * **Redo-PassiveNewFirewallRules**
+        Given a pre-install and post-install run of Get-PassiveFirewallRules, the registry entries for any new additions are re-written so that the MMPT will detect them.
   * **Remove-PassiveDesktopShortcuts** 
 		Removes the named shortcuts by name without needing to know the path.
   * **Remove-PassiveEnvironmentVariables** 
