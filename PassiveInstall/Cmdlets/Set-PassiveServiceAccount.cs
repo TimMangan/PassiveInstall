@@ -13,7 +13,7 @@ using Microsoft.Win32;
 
 namespace PassiveInstall.Cmdlets
 {
-    // Copyright 2018 TMurgent Technologies, LLP
+    // Copyright 2026 TMurgent Technologies, LLP
 
     [Cmdlet(VerbsCommon.Set, "PassiveServiceAccount", ConfirmImpact = ConfirmImpact.Medium, SupportsShouldProcess = true)]
     public class Set_PassiveServiceAccount : Cmdlet

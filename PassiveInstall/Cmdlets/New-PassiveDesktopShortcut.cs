@@ -11,7 +11,7 @@ using System.Runtime.InteropServices;
 
 namespace PassiveInstall.Cmdlets
 {
-    // Copyright 2018 TMurgent Technologies, LLP
+    // Copyright 2026 TMurgent Technologies, LLP
 
     [Cmdlet(VerbsCommon.New, "PassiveDesktopShortcut", ConfirmImpact = ConfirmImpact.Medium, SupportsShouldProcess = true)]
     public class NewPassiveDesktopShortcut : Cmdlet

@@ -11,7 +11,7 @@ using PassiveInstall.Statics;
 
 namespace PassiveInstall.Cmdlets
 {
-    // Copyright 2018 TMurgent Technologies, LLP
+    // Copyright 2026 TMurgent Technologies, LLP
 
     [Cmdlet(VerbsCommon.Remove, "PassiveInstallerCacheFolders", ConfirmImpact = ConfirmImpact.Medium, SupportsShouldProcess = true)]
     public class PassiveInstallerCacheFolder : Cmdlet

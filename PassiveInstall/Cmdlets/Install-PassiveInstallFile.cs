@@ -10,7 +10,7 @@ using PassiveInstall.Statics;
 
 namespace PassiveInstall.Cmdlets
 {
-    // Copyright 2018 TMurgent Technologies, LLP
+    // Copyright 2026 TMurgent Technologies, LLP
 
     // This cmdlet is the work horse of the installations.  It understannds many of the file types of files used for installation so that
     // you can call this with just the filename and any additional arguments needed.

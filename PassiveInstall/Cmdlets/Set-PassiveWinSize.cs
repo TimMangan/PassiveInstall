@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 
 namespace PassiveInstall.Cmdlets
 {
-    // Copyright 2018 TMurgent Technologies, LLP
+    // Copyright 2026 TMurgent Technologies, LLP
 
     [Cmdlet(VerbsCommon.Set, "PassiveWinSize")]
     public class Set_PassiveWinSize : PSCmdlet

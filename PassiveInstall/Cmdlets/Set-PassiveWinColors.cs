@@ -8,7 +8,7 @@ using System.Management.Automation;
 
 namespace PassiveInstall.Cmdlets
 {
-    // Copyright 2018 TMurgent Technologies, LLP
+    // Copyright 2026 TMurgent Technologies, LLP
 
     [Cmdlet(VerbsCommon.Set, "PassiveWinColors")]
     public class Set_PassiveWinColors : PSCmdlet

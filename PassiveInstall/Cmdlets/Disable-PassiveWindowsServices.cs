@@ -12,7 +12,7 @@ using Microsoft.Win32;
 
 namespace PassiveInstall.Cmdlets
 {
-    // Copyright 2018 TMurgent Technologies, LLP
+    // Copyright 2026 TMurgent Technologies, LLP
 
     [Cmdlet(VerbsLifecycle.Disable, "PassiveWindowsServices", ConfirmImpact = ConfirmImpact.Medium, SupportsShouldProcess = true)]
     public class PassiveDisableWindowsServices : Cmdlet

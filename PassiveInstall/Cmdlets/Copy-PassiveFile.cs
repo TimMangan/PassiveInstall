@@ -11,7 +11,7 @@ using Microsoft.Win32;
 
 namespace PassiveInstall.Cmdlets
 {
-    // Copyright 2018 TMurgent Technologies, LLP
+    // Copyright 2026 TMurgent Technologies, LLP
 
     // Used to copy a file, optionally changing the name.  It will ensure that the destination folder exists.
     [Cmdlet(VerbsCommon.Copy, "PassiveFile", ConfirmImpact = ConfirmImpact.Medium, SupportsShouldProcess = true)]

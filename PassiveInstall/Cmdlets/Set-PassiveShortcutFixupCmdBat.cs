@@ -13,7 +13,7 @@ using Shell32;
 
 namespace PassiveInstall.Cmdlets
 {
-    // Copyright 2018 TMurgent Technologies, LLP
+    // Copyright 2026 TMurgent Technologies, LLP
 
     [Cmdlet(VerbsCommon.Set, "PassiveShortcutFixupCmdBat", ConfirmImpact = ConfirmImpact.Medium, SupportsShouldProcess = true)]
     public class Set_PassiveShortcutFixupCmdBat : Cmdlet

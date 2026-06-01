@@ -9,7 +9,7 @@ using System.IO;
 
 namespace PassiveInstall.Cmdlets
 {
-    // Copyright 2018 TMurgent Technologies, LLP
+    // Copyright 2026 TMurgent Technologies, LLP
 
     [Cmdlet(VerbsCommon.Move, "PassiveFolder", ConfirmImpact = ConfirmImpact.Medium, SupportsShouldProcess = true)]
     public class Move_PassiveFolder : Cmdlet

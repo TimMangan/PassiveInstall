@@ -93,7 +93,7 @@ The following is a summary of the cmdlets.  See PassiveInstall.dll-help.xml for 
 ````
 # PassiveInstall.ps1
 #
-# Copyright 2017 TMurgent Technologies, LLP 
+# Copyright 2026 TMurgent Technologies, LLP 
 #
 #
 # PURPOSE:

@@ -12,7 +12,7 @@ using PassiveInstall.Statics;
 
 namespace PassiveInstall.Cmdlets
 {
-    // Copyright 2018 TMurgent Technologies, LLP
+    // Copyright 2026 TMurgent Technologies, LLP
 
     // Often, even as an administrator, you need to start powershell with a "Run As Administrator" to be able to perform the actions
     // that you need to do.  By adding a call to this cmdlet at the beginning of your powershell script, you ensure that the script

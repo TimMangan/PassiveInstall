@@ -11,7 +11,7 @@ using System.Timers;
 
 namespace PassiveInstall.Cmdlets
 {
-    // Copyright 2021 TMurgent Technologies, LLP
+    // Copyright 2026 TMurgent Technologies, LLP
 
     [Cmdlet(VerbsCommon.Show, "PassiveTimer")]
     public class Show_PassiveTimer : PSCmdlet

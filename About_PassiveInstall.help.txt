@@ -18,7 +18,7 @@ LONG DESCRIPTION
 	a new window, there will be a -DoSilent optional parameter that	will start the new window hidden as well.
 
 	PassiveInstall is provided on an "As Is" basis free of charge for any suitable purpose.  Specifically, the software may 
-	not be decompiled or reverse engineered. Copyright 2022, TMurgent Technologies, LLP
+	not be decompiled or reverse engineered. Copyright 2026, TMurgent Technologies, LLP
 
 EXAMPLES
     Typically start with the Install-PassiveInstallFile, in which you supply a file to be installed and optional 

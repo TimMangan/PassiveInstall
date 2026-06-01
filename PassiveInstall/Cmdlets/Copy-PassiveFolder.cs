@@ -11,7 +11,7 @@ using Microsoft.Win32;
 
 namespace PassiveInstall.Cmdlets
 {
-    // Copyright 2018 TMurgent Technologies, LLP
+    // Copyright 2026 TMurgent Technologies, LLP
 
     // Used to copy a folder, optionally changing the name.  It will ensure that the parent destination folders exist and create them if needed.
 
