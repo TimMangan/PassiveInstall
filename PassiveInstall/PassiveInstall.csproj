@@ -58,7 +58,8 @@
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>strongname.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -138,12 +139,11 @@
     <Compile Include="Structures\FirewallRules.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Icon1.ico" />
     <Content Include="P_128x128.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Cert\Digicert3.pfx" />
-    <None Include="strongname.pfx" />
+    <None Include="InnoInstaller\InnoSetupPassiveInstall.iss" />
+    <None Include="_PostReleaseBuild.ps1" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="IWshRuntimeLibrary">
@@ -167,6 +167,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>$(SolutionDir)\Certificate\signtool.exe sign /sha1 890C5C4E81A72279B7D39F46DCC6831229133296 /tr http://timestamp.digicert.com /td sha256 /fd sha256  $(TargetPath)</PostBuildEvent>
+    <PostBuildEvent>powershell.exe -f "$(ProjectDir)_PostReleaseBuild.ps1" $(PlatformName) $(ConfigurationName) $(SolutionDir) $(SolutionDir)OutputDir</PostBuildEvent>
   </PropertyGroup>
 </Project>
