@@ -110,7 +110,7 @@ namespace PassiveInstall.Cmdlets
                     if (kBase != null)
                     {
                         kBase.SetValue(name, value);
-                        output.AddToDefault(name, value);
+                        output.AddToParameter(name, value);
                         WriteVerbose(_cmdlet + ": Updated Parameters rule \'" + name + "\'");
                     }
                     else

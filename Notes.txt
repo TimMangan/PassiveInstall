@@ -1,3 +1,7 @@
+Version 3.2
+	Fix to Redo-PassiveNewFirewallRules to handle case of parameter rule.
+Version 3.1
+	Fix 
 Version 3.0
     Added new cmdlets:
 		Get-PassiveFirewallRules
