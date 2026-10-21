@@ -1,3 +1,5 @@
+Version 3.3
+	Fixed installer for 64-bit.
 Version 3.2
 	Fix to Redo-PassiveNewFirewallRules to handle case of parameter rule.
 Version 3.1

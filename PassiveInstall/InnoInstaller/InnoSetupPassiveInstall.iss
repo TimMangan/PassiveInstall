@@ -3,7 +3,7 @@
 ; Non-commercial use only
 
 #define MyAppName "PassiveInstall"
-#define MyAppVersion "3.1.0.0"
+#define MyAppVersion "3.3.0.0"
 #define MyAppPublisher "TMurgent Technologies, LLP"
 #define MyAppURL "https://www.tmurgent.com/"
 
@@ -18,6 +18,8 @@ AppPublisher={#MyAppPublisher}
 AppPublisherURL={#MyAppURL}
 AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
+ArchitecturesInstallIn64BitMode=x64compatible
+ArchitecturesAllowed=x64compatible
 DefaultDirName={autopf}\WindowsPowerShell\Modules\PassiveInstall
 DisableDirPage=yes
 DefaultGroupName={#MyAppName}
